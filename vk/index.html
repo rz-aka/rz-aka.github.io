@@ -125,6 +125,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
 /* Photos page */
 .photos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
 .photos-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; cursor: pointer; }
+@keyframes float { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+@keyframes moveLeft { from { transform: translateX(200px); } to { transform: translateX(-400px); } }
 </style>
 </head>
 <body>
@@ -294,21 +296,36 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
 
     <!-- PAGE: PHOTOS -->
     <div id="page-photos" class="page">
-      <h2 style="font-size:18px; margin-bottom:12px; color:#e0e0e0;">Фотографии участников</h2>
-      <div class="photos-grid">
-        <img src="https://i.pravatar.cc/300?img=11" alt="">
-        <img src="https://i.pravatar.cc/300?img=5" alt="">
-        <img src="https://i.pravatar.cc/300?img=12" alt="">
-        <img src="https://i.pravatar.cc/300?img=53" alt="">
-        <img src="https://i.pravatar.cc/300?img=45" alt="">
-        <img src="https://i.pravatar.cc/300?img=13" alt="">
-        <img src="https://i.pravatar.cc/300?img=16" alt="">
-        <img src="https://i.pravatar.cc/300?img=20" alt="">
-        <img src="https://i.pravatar.cc/300?img=29" alt="">
-        <img src="https://i.pravatar.cc/300?img=33" alt="">
-        <img src="https://i.pravatar.cc/300?img=36" alt="">
-        <img src="https://i.pravatar.cc/300?img=40" alt="">
+      <div class="back-btn" onclick="showPage('feed')">← Назад к новостям</div>
+      <h2 style="font-size:18px; margin-bottom:12px; color:#e0e0e0;">📸 24 кота (альбом бати)</h2>
+      <div style="font-size:13px; color:#888; margin-bottom:10px;">Батя решил завести котов, потому что «внуков от тебя не дождаться»</div>
+      <div class="photos-grid" style="grid-template-columns:repeat(4,1fr);">
+        <img src="https://cataas.com/cat?t=1" alt="кот 1">
+        <img src="https://cataas.com/cat?t=2" alt="кот 2">
+        <img src="https://cataas.com/cat?t=3" alt="кот 3">
+        <img src="https://cataas.com/cat?t=4" alt="кот 4">
+        <img src="https://cataas.com/cat?t=5" alt="кот 5">
+        <img src="https://cataas.com/cat?t=6" alt="кот 6">
+        <img src="https://cataas.com/cat?t=7" alt="кот 7">
+        <img src="https://cataas.com/cat?t=8" alt="кот 8">
+        <img src="https://cataas.com/cat?t=9" alt="кот 9">
+        <img src="https://cataas.com/cat?t=10" alt="кот 10">
+        <img src="https://cataas.com/cat?t=11" alt="кот 11">
+        <img src="https://cataas.com/cat?t=12" alt="кот 12">
+        <img src="https://cataas.com/cat?t=13" alt="кот 13">
+        <img src="https://cataas.com/cat?t=14" alt="кот 14">
+        <img src="https://cataas.com/cat?t=15" alt="кот 15">
+        <img src="https://cataas.com/cat?t=16" alt="кот 16">
+        <img src="https://cataas.com/cat?t=17" alt="кот 17">
+        <img src="https://cataas.com/cat?t=18" alt="кот 18">
+        <img src="https://cataas.com/cat?t=19" alt="кот 19">
+        <img src="https://cataas.com/cat?t=20" alt="кот 20">
+        <img src="https://cataas.com/cat?t=21" alt="кот 21">
+        <img src="https://cataas.com/cat?t=22" alt="кот 22">
+        <img src="https://cataas.com/cat?t=23" alt="кот 23">
+        <img src="https://cataas.com/cat?t=24" alt="кот 24">
       </div>
+      <div style="text-align:center; margin-top:10px; font-size:13px; color:#666;">Всего 24 кота • Добавлено батей • Жалобы не принимаются</div>
     </div>
 
     <!-- PAGE: PROFILE 1 - Димон -->
@@ -476,6 +493,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
               <div style="font-size:12px; color:#4a76a8; margin-top:4px;">🔥 Играют 3 217 друзей</div>
             </div>
           </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid #1e1e30; cursor:pointer;" onclick="showPage('flappybeard')">
+            <div style="width:60px; height:60px; background:#2a2a4a; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:28px;">🧔</div>
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Flappy Beard</div>
+              <div style="font-size:12px; color:#666;">Летающая голова с бородой. Уворачивайся от расчёсок, шампуней и ножниц! Рекорд: 2 очка (Саня)</div>
+              <div style="font-size:12px; color:#4a76a8; margin-top:4px;">🔥 Играют 666 друзей</div>
+            </div>
+          </div>
           <div style="display:flex; align-items:center; gap:12px; padding:12px 0;">
             <div style="width:60px; height:60px; background:#2a2a4a; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:28px;">💰</div>
             <div>
@@ -531,6 +556,99 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
             <div style="font-size:12px; color:#666; margin-top:4px;">Ручная лепка. 1 кг. В каждой пачке — записка "Сынок, когда внуки?". С любовью, ваш Батя.</div>
             <div style="font-size:16px; font-weight:700; color:#4a76a8; margin-top:6px;">349 ₽ <span style="font-size:12px; color:#666; text-decoration:line-through;">450 ₽</span></div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: FLAPPY BEARD -->
+    <div id="page-flappybeard" class="page">
+      <div class="back-btn" onclick="showPage('games')">← Назад к играм</div>
+      <h2 style="font-size:18px; margin-bottom:12px; color:#e0e0e0;">🧔 Flappy Beard</h2>
+      <div style="background:#12121e; border-radius:8px; border:1px solid #1e1e30; padding:20px; margin-bottom:12px;">
+        <!-- Game canvas area -->
+        <div style="background:#1a1a2e; border-radius:8px; padding:40px 20px; position:relative; overflow:hidden; height:350px;">
+          <!-- Sky -->
+          <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(180deg, #1a2a3e, #2a1a2e);"></div>
+          <!-- Bearded head (player) - center left -->
+          <div style="position:absolute; top:100px; left:80px; z-index:10; animation: float 1s ease-in-out infinite alternate;">
+            <!-- Head -->
+            <div style="width:50px; height:50px; background:#d4a574; border-radius:50%; position:relative; margin-left:10px;">
+              <!-- Eyes -->
+              <div style="position:absolute; top:14px; left:10px; width:8px; height:8px; background:#fff; border-radius:50%;">
+                <div style="width:4px; height:4px; background:#000; border-radius:50%; margin:2px;"></div>
+              </div>
+              <div style="position:absolute; top:14px; right:10px; width:8px; height:8px; background:#fff; border-radius:50%;">
+                <div style="width:4px; height:4px; background:#000; border-radius:50%; margin:2px;"></div>
+              </div>
+              <!-- Mouth -->
+              <div style="position:absolute; bottom:8px; left:50%; transform:translateX(-50%); width:20px; height:4px; background:#8B4513; border-radius:2px;"></div>
+            </div>
+            <!-- Beard -->
+            <div style="width:56px; height:40px; background:#555; border-radius:0 0 28px 28px; margin-top:-4px; position:relative;">
+              <div style="position:absolute; top:5px; left:8px; width:2px; height:30px; background:#666; transform:rotate(-10deg);"></div>
+              <div style="position:absolute; top:5px; left:16px; width:2px; height:30px; background:#666; transform:rotate(-5deg);"></div>
+              <div style="position:absolute; top:5px; left:24px; width:2px; height:30px; background:#666;"></div>
+              <div style="position:absolute; top:5px; left:32px; width:2px; height:30px; background:#666; transform:rotate(5deg);"></div>
+              <div style="position:absolute; top:5px; left:40px; width:2px; height:30px; background:#666; transform:rotate(10deg);"></div>
+            </div>
+            <!-- Wings (ears) -->
+            <div style="position:absolute; top:-2px; left:-10px; width:12px; height:20px; background:#d4a574; border-radius:50% 50% 0 0; transform:rotate(-20deg);"></div>
+            <div style="position:absolute; top:-2px; right:-10px; width:12px; height:20px; background:#d4a574; border-radius:50% 50% 0 0; transform:rotate(20deg);"></div>
+          </div>
+          <!-- Obstacle 1: Comb (top) -->
+          <div style="position:absolute; top:60px; right:200px; z-index:5; animation: moveLeft 4s linear infinite;">
+            <div style="width:20px; height:80px; background:#4a4a6a; border-radius:4px; position:relative;">
+              <div style="position:absolute; top:-10px; left:2px; width:4px; height:12px; background:#888; border-radius:2px;"></div>
+              <div style="position:absolute; top:-10px; left:8px; width:4px; height:12px; background:#888; border-radius:2px;"></div>
+              <div style="position:absolute; top:-10px; left:14px; width:4px; height:12px; background:#888; border-radius:2px;"></div>
+              <div style="position:absolute; top:-10px; left:2px; width:4px; height:12px; background:#888; border-radius:2px;"></div>
+            </div>
+            <div style="font-size:10px; color:#888; text-align:center; margin-top:4px;">Расчёска</div>
+          </div>
+          <!-- Obstacle 2: Shampoo (bottom) -->
+          <div style="position:absolute; bottom:80px; right:100px; z-index:5; animation: moveLeft 5s linear infinite; animation-delay:1s;">
+            <div style="width:30px; height:70px; background:#4a8a4a; border-radius:6px; position:relative;">
+              <div style="position:absolute; top:-8px; left:5px; width:20px; height:10px; background:#3a7a3a; border-radius:4px 4px 0 0;"></div>
+              <div style="position:absolute; top:15px; left:5px; font-size:8px; color:#fff;">Шамп</div>
+            </div>
+            <div style="font-size:10px; color:#888; text-align:center; margin-top:4px;">Шампунь</div>
+          </div>
+          <!-- Obstacle 3: Scissors (top) -->
+          <div style="position:absolute; top:50px; right:320px; z-index:5; animation: moveLeft 4.5s linear infinite; animation-delay:2s;">
+            <div style="display:flex; gap:2px;">
+              <div style="width:4px; height:40px; background:#aaa; border-radius:2px; transform:rotate(-10deg);"></div>
+              <div style="width:4px; height:40px; background:#aaa; border-radius:2px; transform:rotate(10deg);"></div>
+            </div>
+            <div style="font-size:10px; color:#888; text-align:center; margin-top:2px;">Ножницы</div>
+          </div>
+          <!-- Score -->
+          <div style="position:absolute; top:10px; right:20px; z-index:20; font-size:36px; font-weight:700; color:#4a76a8; opacity:0.3;">0</div>
+          <!-- Ground -->
+          <div style="position:absolute; bottom:0; left:0; right:0; height:40px; background:#2a2a1a; border-top:2px solid #3a3a2a;"></div>
+        </div>
+        <div style="text-align:center; margin-top:16px;">
+          <div style="font-size:16px; font-weight:600; color:#e0e0e0;">Flappy Beard</div>
+          <div style="font-size:13px; color:#888; margin-top:4px;">Кликни по голове — она летит вверх. Не врежься в расчёску, шампунь или ножницы!</div>
+          <div style="display:flex; gap:20px; justify-content:center; margin-top:12px;">
+            <div><span style="color:#4a76a8;">🏆</span> Рекорд: <strong style="color:#e0e0e0;">2</strong> (Саня)</div>
+            <div><span style="color:#4a76a8;">👤</span> Твой счёт: <strong style="color:#e0e0e0;">0</strong></div>
+            <div><span style="color:#4a76a8;">👥</span> Друзья: <strong style="color:#e0e0e0;">666</strong></div>
+          </div>
+          <div style="margin-top:14px; padding:10px; background:#1e1e35; border-radius:8px;">
+            <span style="color:#888; font-size:13px;">👆 Нажми «Играть» и попробуй побить рекорд Сани (невозможно)</span>
+          </div>
+          <div style="margin-top:14px; display:flex; justify-content:center; gap:12px;">
+            <span style="background:#4a76a8; padding:10px 30px; border-radius:8px; font-size:14px; font-weight:600; color:#fff; cursor:pointer;">▶ Играть</span>
+            <span style="background:#1e1e35; padding:10px 20px; border-radius:8px; font-size:14px; color:#888; cursor:pointer;">🏆 Таблица рекордов</span>
+          </div>
+        </div>
+      </div>
+      <div class="post" style="padding:16px;">
+        <h3 style="font-size:14px; font-weight:600; color:#aaa; margin-bottom:8px;">💬 Отзывы игроков</h3>
+        <div style="font-size:13px; color:#bbb;">
+          <div style="padding:8px 0; border-bottom:1px solid #1e1e30;"><strong>Димон:</strong> игра говно, борода закрывает обзор! <span style="color:#666;">2 мин назад</span></div>
+          <div style="padding:8px 0; border-bottom:1px solid #1e1e30;"><strong>Кристина:</strong> таро показало что я наберу 5 очков. Набрала 0. Таро врёт <span style="color:#666;">5 мин назад</span></div>
+          <div style="padding:8px 0;"><strong>Батя:</strong> внуки уже спрашивают "дед, а почему у тебя борода в телефоне?" Сынок, женись уже <span style="color:#666;">10 мин назад</span></div>
         </div>
       </div>
     </div>
