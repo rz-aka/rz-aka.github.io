@@ -158,7 +158,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
       <div class="nav-item" onclick="showPage('games')"><span class="nav-icon">🎮</span> Игры</div>
       <div class="nav-item" onclick="showPage('goods')"><span class="nav-icon">🏪</span> Товары</div>
       <div class="nav-item" onclick="showPage('friends')"><span class="nav-icon">👥</span> Друзья</div>
-      <div class="nav-item"><span class="nav-icon">⚙️</span> Настройки</div>
+      <div class="nav-item" onclick="showPage('settings')"><span class="nav-icon">⚙️</span> Настройки</div>
     </div>
   </div>
 
@@ -973,6 +973,94 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
             <img src="https://i.pravatar.cc/200?img=13" alt="">
             <img src="https://i.pravatar.cc/200?img=64" alt="">
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: SETTINGS -->
+    <div id="page-settings" class="page">
+      <div class="back-btn" onclick="showPage('feed')">← Назад к новостям</div>
+      <h2 style="font-size:18px; margin-bottom:12px; color:#e0e0e0;">⚙️ Настройки VK</h2>
+      <div class="post">
+        <div class="post-body">
+          <div style="padding:12px 0; border-bottom:1px solid #1e1e30; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Режим «Невидимка»</div>
+              <div style="font-size:12px; color:#888;">Чтобы батя не видел, что ты онлайн в 4 утра</div>
+            </div>
+            <div style="width:44px; height:24px; background:#4a76a8; border-radius:12px; position:relative; cursor:pointer;">
+              <div style="width:18px; height:18px; background:#fff; border-radius:50%; position:absolute; top:3px; right:3px;"></div>
+            </div>
+          </div>
+          <div style="padding:12px 0; border-bottom:1px solid #1e1e30; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Отключить батю</div>
+              <div style="font-size:12px; color:#888;">Перестать получать сообщения «ты когда женишься?»</div>
+            </div>
+            <div style="width:44px; height:24px; background:#333; border-radius:12px; position:relative; cursor:pointer;">
+              <div style="width:18px; height:18px; background:#888; border-radius:50%; position:absolute; top:3px; left:3px;"></div>
+            </div>
+          </div>
+          <div style="padding:12px 0; border-bottom:1px solid #1e1e30; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Приватность аккаунта</div>
+              <div style="font-size:12px; color:#888;">Кто может видеть твои лайки под фото тян</div>
+            </div>
+            <div style="font-size:13px; color:#4a76a8;">Только я</div>
+          </div>
+          <div style="padding:12px 0; border-bottom:1px solid #1e1e30; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Чёрный список</div>
+              <div style="font-size:12px; color:#888;">Заблокировано: батя (нельзя заблокировать батю)</div>
+            </div>
+            <div style="font-size:13px; color:#666;">0 чел.</div>
+          </div>
+          <div style="padding:12px 0; border-bottom:1px solid #1e1e30; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Уведомления</div>
+              <div style="font-size:12px; color:#888;">Напоминание: «пора есть, сынок» каждые 3 часа</div>
+            </div>
+            <div style="font-size:13px; color:#4a76a8;">Вкл</div>
+          </div>
+          <div style="padding:12px 0; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Язык интерфейса</div>
+              <div style="font-size:12px; color:#888;">Русский матерный / Русский литературный / Смешной</div>
+            </div>
+            <div style="font-size:13px; color:#4a76a8;">Русский мат.</div>
+          </div>
+        </div>
+      </div>
+      <div class="post" style="padding:16px;">
+        <h3 style="font-size:14px; font-weight:600; color:#aaa; margin-bottom:10px;">🔐 Безопасность</h3>
+        <div style="display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #1e1e30; cursor:pointer;">
+          <span style="font-size:20px;">📱</span>
+          <div>
+            <div style="font-size:13px; color:#e0e0e0;">Привязать номер телефона</div>
+            <div style="font-size:12px; color:#888;">+7 (9**) ***-**-** (не ваш — бати)</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #1e1e30; cursor:pointer;">
+          <span style="font-size:20px;">🔑</span>
+          <div>
+            <div style="font-size:13px; color:#e0e0e0;">Пароль</div>
+            <div style="font-size:12px; color:#888;">•••••••• (подсказка: 12345678)</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; padding:10px 0; cursor:pointer;">
+          <span style="font-size:20px;">👁️</span>
+          <div>
+            <div style="font-size:13px; color:#e0e0e0;">Двухфакторная аутентификация</div>
+            <div style="font-size:12px; color:#888;">Код приходит бате на телефон. Он одобряет. Или нет.</div>
+          </div>
+        </div>
+      </div>
+      <div class="post" style="padding:16px; text-align:center;">
+        <div style="font-size:13px; color:#888; margin-bottom:8px;">✋ Палец вверх если настройки — чистый кринж</div>
+        <div style="display:flex; justify-content:center; gap:16px;">
+          <span style="background:#1e1e35; padding:8px 20px; border-radius:8px; font-size:13px; color:#aaa; cursor:pointer;">👍 Кринж</span>
+          <span style="background:#1e1e35; padding:8px 20px; border-radius:8px; font-size:13px; color:#aaa; cursor:pointer;">👎 Жиза</span>
+          <span style="background:#1e1e35; padding:8px 20px; border-radius:8px; font-size:13px; color:#aaa; cursor:pointer;">💾 Сохранить</span>
         </div>
       </div>
     </div>
