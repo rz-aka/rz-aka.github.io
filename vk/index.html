@@ -157,6 +157,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
       <div class="nav-item" onclick="showPage('music')"><span class="nav-icon">🎵</span> Музыка</div>
       <div class="nav-item" onclick="showPage('games')"><span class="nav-icon">🎮</span> Игры</div>
       <div class="nav-item" onclick="showPage('goods')"><span class="nav-icon">🏪</span> Товары</div>
+      <div class="nav-item" onclick="showPage('friends')"><span class="nav-icon">👥</span> Друзья</div>
       <div class="nav-item"><span class="nav-icon">⚙️</span> Настройки</div>
     </div>
   </div>
@@ -231,7 +232,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
         <div class="post-body">
           <div class="post-text">
             Девочки, у меня Меркурий ретроградный в 6 доме, поэтому сегодня я уронила айфон в унитаз 😭😭<br><br>
-            А ещё на таро выпала "Башня" — ну всё, пи**а моему пт (личная жизнь — прим. админа)
+            А ещё на таро выпала "Башня" — ну всё, пи**а
           </div>
           <img class="post-image" src="https://i.pravatar.cc/400?img=16" alt="фото">
         </div>
@@ -534,6 +535,66 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
       </div>
     </div>
 
+    <!-- PAGE: FRIENDS -->
+    <div id="page-friends" class="page">
+      <div class="back-btn" onclick="showPage('feed')">← Назад к новостям</div>
+      <h2 style="font-size:18px; margin-bottom:12px; color:#e0e0e0;">👥 Друзья (8)</h2>
+      <div class="post">
+        <div class="post-body">
+          <!-- Friend 1 -->
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid #1e1e30; cursor:pointer;">
+            <img src="https://i.pravatar.cc/100?img=20" style="width:50px; height:50px; border-radius:50%; object-fit:cover;">
+            <div style="flex:1;">
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Алина "Тян-Косплей" Зайцева</div>
+              <div style="font-size:12px; color:#888;">Online 🟢 — косплеит Хинату из Наруто уже 3 года</div>
+            </div>
+            <div style="font-size:12px; color:#4a76a8; padding:4px 12px; border:1px solid #4a76a8; border-radius:16px;">Написать</div>
+          </div>
+          <!-- Friend 2 -->
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid #1e1e30; cursor:pointer;">
+            <img src="https://i.pravatar.cc/100?img=33" style="width:50px; height:50px; border-radius:50%; object-fit:cover;">
+            <div style="flex:1;">
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Никита "Dota King" Волков</div>
+              <div style="font-size:12px; color:#888;">Online 🟢 — 10k MMR, мидер, кормильщик</div>
+            </div>
+            <div style="font-size:12px; color:#4a76a8; padding:4px 12px; border:1px solid #4a76a8; border-radius:16px;">Написать</div>
+          </div>
+          <!-- Friend 3 -->
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid #1e1e30; cursor:pointer;">
+            <img src="https://i.pravatar.cc/100?img=45" style="width:50px; height:50px; border-radius:50%; object-fit:cover;">
+            <div style="flex:1;">
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Руслан "Гоп-стоп" Мамедов</div>
+              <div style="font-size:12px; color:#888;">Online 🟢 — "слыш, мелочь есть?"</div>
+            </div>
+            <div style="font-size:12px; color:#4a76a8; padding:4px 12px; border:1px solid #4a76a8; border-radius:16px;">Написать</div>
+          </div>
+          <!-- Friend 4 -->
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid #1e1e30; cursor:pointer;">
+            <img src="https://i.pravatar.cc/100?img=29" style="width:50px; height:50px; border-radius:50%; object-fit:cover;">
+            <div style="flex:1;">
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Катя "Творческая" Соколова</div>
+              <div style="font-size:12px; color:#888;">Online 🟢 — рисует арты, поёт в расческу, плачет под фонк</div>
+            </div>
+            <div style="font-size:12px; color:#4a76a8; padding:4px 12px; border:1px solid #4a76a8; border-radius:16px;">Написать</div>
+          </div>
+          <!-- Friend 5 -->
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 0; cursor:pointer;">
+            <img src="https://i.pravatar.cc/100?img=36" style="width:50px; height:50px; border-radius:50%; object-fit:cover;">
+            <div style="flex:1;">
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Лёха "Офисный Планктон" Морозов</div>
+              <div style="font-size:12px; color:#888;">Был(а) 3 минуты назад — "ненавижу понедельники, пойду курить"</div>
+            </div>
+            <div style="font-size:12px; color:#4a76a8; padding:4px 12px; border:1px solid #4a76a8; border-radius:16px;">Написать</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; justify-content:center; margin-top:12px;">
+        <span style="background:#1e1e35; padding:6px 14px; border-radius:16px; font-size:13px; color:#888; cursor:pointer;">Возможные друзья</span>
+        <span style="background:#1e1e35; padding:6px 14px; border-radius:16px; font-size:13px; color:#888; cursor:pointer;">Заявки (2)</span>
+        <span style="background:#1e1e35; padding:6px 14px; border-radius:16px; font-size:13px; color:#888; cursor:pointer;">Поиск друзей</span>
+      </div>
+    </div>
+
     <!-- PAGE: PROFILE 3 - Саня -->
     <div id="page-profile3" class="page">
       <div class="back-btn" onclick="showPage('feed')">← Назад к новостям</div>
@@ -611,7 +672,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
     </div>
 
     <div class="widget">
-      <div class="widget-title">👥 Друзья онлайн (3)</div>
+      <div class="widget-title">👥 Друзья онлайн (5)</div>
       <div class="friend-item" onclick="showPage('profile2')">
         <img class="friend-avatar" src="https://i.pravatar.cc/100?img=5" alt="">
         <div>
@@ -633,7 +694,21 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
           <div class="friend-online">10 мин назад</div>
         </div>
       </div>
-      <div style="text-align:center; margin-top:8px; font-size:12px; color:#4a76a8; cursor:pointer;">Все друзья (12)</div>
+      <div class="friend-item">
+        <img class="friend-avatar" src="https://i.pravatar.cc/100?img=20" alt="">
+        <div>
+          <div class="friend-name">Алина Зайцева</div>
+          <div class="friend-online">Online</div>
+        </div>
+      </div>
+      <div class="friend-item">
+        <img class="friend-avatar" src="https://i.pravatar.cc/100?img=33" alt="">
+        <div>
+          <div class="friend-name">Никита Волков</div>
+          <div class="friend-online">5 мин назад</div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:8px; font-size:12px; color:#4a76a8; cursor:pointer;" onclick="showPage('friends')">Все друзья (8)</div>
     </div>
 
     <div class="widget">
