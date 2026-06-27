@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VK Прикол</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
+
+/* Header */
+.header { background: #1a1a2e; border-bottom: 1px solid #2a2a4a; position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 48px; }
+.header-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; height: 100%; padding: 0 12px; }
+.logo { color: #4a76a8; font-weight: 700; font-size: 18px; margin-right: 20px; cursor: pointer; }
+.logo:hover { color: #5b8ec9; }
+.search { flex: 1; max-width: 400px; }
+.search input { width: 100%; background: #252540; border: 1px solid #2a2a4a; border-radius: 8px; padding: 6px 12px; color: #e0e0e0; font-size: 13px; outline: none; }
+.search input::placeholder { color: #666; }
+.search input:focus { border-color: #4a76a8; }
+.header-actions { display: flex; gap: 16px; margin-left: auto; }
+.header-actions span { color: #888; font-size: 13px; cursor: pointer; }
+.header-actions span:hover { color: #4a76a8; }
+
+/* Layout */
+.container { max-width: 960px; margin: 60px auto 0; display: flex; gap: 12px; padding: 12px; }
+.sidebar { width: 200px; flex-shrink: 0; }
+.main { flex: 1; min-width: 0; }
+
+/* Sidebar */
+.sidebar-nav { background: #12121e; border-radius: 8px; overflow: hidden; border: 1px solid #1e1e30; }
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer; color: #bbb; font-size: 13px; border-bottom: 1px solid #1a1a2a; transition: background 0.15s; }
+.nav-item:last-child { border-bottom: none; }
+.nav-item:hover { background: #1a1a30; color: #e0e0e0; }
+.nav-item.active { background: #1e1e35; color: #4a76a8; font-weight: 500; }
+.nav-icon { width: 20px; text-align: center; font-size: 16px; }
+
+/* Post Card */
+.post { background: #12121e; border-radius: 8px; border: 1px solid #1e1e30; margin-bottom: 12px; }
+.post-header { display: flex; align-items: center; gap: 10px; padding: 12px 16px 8px; cursor: pointer; }
+.post-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #2a2a4a; }
+.post-author { font-weight: 600; font-size: 13px; color: #e0e0e0; }
+.post-author:hover { color: #4a76a8; text-decoration: underline; }
+.post-time { font-size: 11px; color: #666; }
+.post-body { padding: 0 16px 12px; }
+.post-text { font-size: 14px; line-height: 1.5; margin-bottom: 8px; }
+.post-image { width: 100%; border-radius: 6px; margin-top: 8px; max-height: 400px; object-fit: cover; cursor: pointer; }
+.post-actions { display: flex; border-top: 1px solid #1a1a2a; padding: 8px 16px; gap: 24px; }
+.post-action { display: flex; align-items: center; gap: 6px; color: #666; font-size: 13px; cursor: pointer; }
+.post-action:hover { color: #4a76a8; }
+.post-poll { background: #1a1a2e; border-radius: 6px; padding: 12px; margin-top: 8px; }
+.poll-bar { height: 28px; background: #252540; border-radius: 4px; margin: 6px 0; position: relative; overflow: hidden; }
+.poll-fill { height: 100%; background: linear-gradient(90deg, #4a76a8, #5b8ec9); border-radius: 4px; transition: width 0.5s; }
+.poll-label { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: #e0e0e0; z-index: 1; }
+.poll-pct { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 11px; color: #aaa; z-index: 1; }
+.poll-title { font-size: 13px; color: #aaa; margin-bottom: 4px; }
+.poll-votes { font-size: 11px; color: #666; margin-top: 6px; }
+
+/* Profile page */
+.profile-card { background: #12121e; border-radius: 8px; border: 1px solid #1e1e30; overflow: hidden; }
+.profile-cover { height: 180px; background: linear-gradient(135deg, #1a1a3e, #2a1a3e, #1a2a3e); position: relative; }
+.profile-avatar-container { position: absolute; bottom: -50px; left: 20px; }
+.profile-avatar { width: 100px; height: 100px; border-radius: 50%; border: 4px solid #12121e; object-fit: cover; }
+.profile-info { padding: 60px 20px 16px; }
+.profile-name { font-size: 20px; font-weight: 700; color: #e0e0e0; }
+.profile-status { font-size: 13px; color: #4a76a8; margin-top: 2px; }
+.profile-details { display: flex; gap: 16px; margin-top: 10px; font-size: 13px; color: #888; }
+.profile-details span { display: flex; align-items: center; gap: 4px; }
+.profile-tabs { display: flex; border-top: 1px solid #1e1e30; padding: 0 20px; }
+.profile-tab { padding: 12px 16px; font-size: 13px; color: #888; cursor: pointer; border-bottom: 2px solid transparent; }
+.profile-tab:hover { color: #e0e0e0; }
+.profile-tab.active { color: #4a76a8; border-bottom-color: #4a76a8; }
+.profile-section { padding: 16px 20px; }
+.profile-section h3 { font-size: 14px; font-weight: 600; color: #aaa; margin-bottom: 10px; }
+.profile-photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.profile-photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; cursor: pointer; }
+.profile-subtitle { font-size: 13px; color: #888; margin-top: 4px; }
+
+/* Back button */
+.back-btn { display: inline-flex; align-items: center; gap: 6px; color: #4a76a8; font-size: 13px; cursor: pointer; margin-bottom: 12px; }
+.back-btn:hover { text-decoration: underline; }
+
+/* Right sidebar widgets */
+.right-sidebar { width: 280px; flex-shrink: 0; }
+.widget { background: #12121e; border-radius: 8px; border: 1px solid #1e1e30; margin-bottom: 12px; padding: 14px; }
+.widget-title { font-size: 13px; font-weight: 600; color: #aaa; margin-bottom: 10px; }
+.friend-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; cursor: pointer; }
+.friend-item:hover { opacity: 0.8; }
+.friend-avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+.friend-name { font-size: 13px; color: #e0e0e0; }
+.friend-online { font-size: 11px; color: #4a76a8; }
+.music-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; font-size: 13px; cursor: pointer; }
+.music-item:hover { opacity: 0.8; }
+.music-icon { color: #4a76a8; }
+
+/* Ad */
+.ad-box { background: #12121e; border-radius: 8px; border: 1px solid #1e1e30; padding: 14px; text-align: center; margin-bottom: 12px; }
+.ad-box img { max-width: 100%; border-radius: 4px; }
+.ad-label { font-size: 10px; color: #555; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Meme status on sidebar */
+.sidebar-profile { background: #12121e; border-radius: 8px; border: 1px solid #1e1e30; padding: 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.sidebar-profile:hover { border-color: #2a2a4a; }
+.sidebar-profile-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+.sidebar-profile-name { font-weight: 600; font-size: 14px; }
+.sidebar-profile-status { font-size: 12px; color: #4a76a8; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar, .right-sidebar { display: none; }
+  .container { padding: 8px; margin-top: 52px; }
+}
+
+/* Hidden pages */
+.page { display: none; }
+.page.active { display: block; }
+
+/* Story ring */
+.stories { display: flex; gap: 10px; padding: 12px 16px; overflow-x: auto; margin-bottom: 12px; background: #12121e; border-radius: 8px; border: 1px solid #1e1e30; }
+.story { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; flex-shrink: 0; }
+.story-ring { width: 56px; height: 56px; border-radius: 50%; padding: 3px; background: conic-gradient(#4a76a8, #8a3ab9, #4a76a8); }
+.story-inner { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; border: 2px solid #12121e; }
+.story-inner img { width: 100%; height: 100%; object-fit: cover; }
+.story-name { font-size: 11px; color: #888; max-width: 60px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-align: center; }
+
+/* Photos page */
+.photos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.photos-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="logo" onclick="showPage('feed')">VK</div>
+    <div class="search"><input type="text" placeholder="Поиск по приколам..."></div>
+    <div class="header-actions">
+      <span>🔔</span>
+      <span>💬</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Left sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-profile" onclick="showPage('profile1')">
+      <img class="sidebar-profile-avatar" src="https://i.pravatar.cc/100?img=11" alt="">
+      <div>
+        <div class="sidebar-profile-name">Димон</div>
+        <div class="sidebar-profile-status">Online</div>
+      </div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-item active" onclick="showPage('feed')"><span class="nav-icon">🏠</span> Моя страница</div>
+      <div class="nav-item" onclick="showPage('feed')"><span class="nav-icon">📰</span> Новости</div>
+      <div class="nav-item" onclick="showPage('photos')"><span class="nav-icon">📸</span> Фотографии</div>
+      <div class="nav-item" onclick="showPage('feed')"><span class="nav-icon">🎵</span> Музыка</div>
+      <div class="nav-item" onclick="showPage('feed')"><span class="nav-icon">🎮</span> Игры</div>
+      <div class="nav-item"><span class="nav-icon">⚙️</span> Настройки</div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="main">
+    <!-- PAGE: FEED -->
+    <div id="page-feed" class="page active">
+      <!-- Stories -->
+      <div class="stories">
+        <div class="story">
+          <div class="story-ring"><div class="story-inner"><img src="https://i.pravatar.cc/100?img=11" alt=""></div></div>
+          <div class="story-name">Димон</div>
+        </div>
+        <div class="story">
+          <div class="story-ring"><div class="story-inner"><img src="https://i.pravatar.cc/100?img=5" alt=""></div></div>
+          <div class="story-name">Кристина</div>
+        </div>
+        <div class="story">
+          <div class="story-ring"><div class="story-inner"><img src="https://i.pravatar.cc/100?img=12" alt=""></div></div>
+          <div class="story-name">Саня</div>
+        </div>
+        <div class="story">
+          <div class="story-ring"><div class="story-inner"><img src="https://i.pravatar.cc/100?img=53" alt=""></div></div>
+          <div class="story-name">Батя</div>
+        </div>
+        <div class="story">
+          <div class="story-ring"><div class="story-inner"><img src="https://i.pravatar.cc/100?img=45" alt=""></div></div>
+          <div class="story-name">Тян</div>
+        </div>
+      </div>
+
+      <!-- Post 1 -->
+      <div class="post">
+        <div class="post-header" onclick="showPage('profile1')">
+          <img class="post-avatar" src="https://i.pravatar.cc/100?img=11" alt="">
+          <div>
+            <div class="post-author">Димон</div>
+            <div class="post-time">Только что</div>
+          </div>
+        </div>
+        <div class="post-body">
+          <div class="post-text">
+            Пацаны, я сегодня SQL-инъекцию в пиццерии сделал — скидку 50% получил.<br><br>
+            Они говорят: "Ваш заказ: '; DROP TABLE orders; --"<br>
+            А я такой: нет, я просто "Пепперони" хотел...
+          </div>
+          <div class="post-poll">
+            <div class="poll-title">📊 Оцените шутку:</div>
+            <div class="poll-bar"><div class="poll-fill" style="width:68%"><span class="poll-label">+1 Смешно</span><span class="poll-pct">68%</span></div></div>
+            <div class="poll-bar"><div class="poll-fill" style="width:22%"><span class="poll-label">Бу-ху-ню</span><span class="poll-pct">22%</span></div></div>
+            <div class="poll-bar"><div class="poll-fill" style="width:10%"><span class="poll-label">Пальцем в глаза</span><span class="poll-pct">10%</span></div></div>
+            <div class="poll-votes">🎤 1 337 голосов</div>
+          </div>
+        </div>
+        <div class="post-actions">
+          <span class="post-action">❤️ 69</span>
+          <span class="post-action">💬 42</span>
+          <span class="post-action">↗️ Поделиться</span>
+        </div>
+      </div>
+
+      <!-- Post 2 -->
+      <div class="post">
+        <div class="post-header" onclick="showPage('profile2')">
+          <img class="post-avatar" src="https://i.pravatar.cc/100?img=5" alt="">
+          <div>
+            <div class="post-author">Кристина</div>
+            <div class="post-time">2 часа назад</div>
+          </div>
+        </div>
+        <div class="post-body">
+          <div class="post-text">
+            Девочки, у меня Меркурий ретроградный в 6 доме, поэтому сегодня я уронила айфон в унитаз 😭😭<br><br>
+            А ещё на таро выпала "Башня" — ну всё, пи**а моему пт (личная жизнь — прим. админа)
+          </div>
+          <img class="post-image" src="https://i.pravatar.cc/400?img=16" alt="фото">
+        </div>
+        <div class="post-actions">
+          <span class="post-action">❤️ 228</span>
+          <span class="post-action">💬 56</span>
+          <span class="post-action">↗️ Поделиться</span>
+        </div>
+      </div>
+
+      <!-- Post 3 -->
+      <div class="post">
+        <div class="post-header" onclick="showPage('profile3')">
+          <img class="post-avatar" src="https://i.pravatar.cc/100?img=12" alt="">
+          <div>
+            <div class="post-author">Саня</div>
+            <div class="post-time">Вчера в 23:47</div>
+          </div>
+        </div>
+        <div class="post-body">
+          <div class="post-text">
+            🏋️ 6 years of natty transformation<br><br>
+            Жим — 140 кг (а мог бы 200, если бы не бросил)<br>
+            Бицепс — 43 см в пампинге<br>
+            Мотивация — качаться, пока у твоей девушки не закончатся причины говорить "ой, да он просто друг"<br><br>
+            #качалка #мотивация #гейнер #спортик
+          </div>
+          <img class="post-image" src="https://i.pravatar.cc/400?img=13" alt="фото">
+        </div>
+        <div class="post-actions">
+          <span class="post-action">❤️ 148</span>
+          <span class="post-action">💬 33</span>
+          <span class="post-action">↗️ Поделиться</span>
+        </div>
+      </div>
+
+      <!-- Post 4 -->
+      <div class="post">
+        <div class="post-header">
+          <img class="post-avatar" src="https://i.pravatar.cc/100?img=53" alt="">
+          <div>
+            <div class="post-author">Батя (сосед)</div>
+            <div class="post-time">Вчера в 18:20</div>
+          </div>
+        </div>
+        <div class="post-body">
+          <div class="post-text">
+            Сынок, я тебе 500 рублей на карту кинул. Купи хлеба, молока и если останется — возьми себе чего-нибудь.<br><br>
+            UPD: @Димон, ты когда приедешь??? Мать переживает. И SQL больше не учи, иди лучше на юриста.
+          </div>
+        </div>
+        <div class="post-actions">
+          <span class="post-action">❤️ 999+</span>
+          <span class="post-action">💬 128</span>
+          <span class="post-action">↗️ Поделиться</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: PHOTOS -->
+    <div id="page-photos" class="page">
+      <h2 style="font-size:18px; margin-bottom:12px; color:#e0e0e0;">Фотографии участников</h2>
+      <div class="photos-grid">
+        <img src="https://i.pravatar.cc/300?img=11" alt="">
+        <img src="https://i.pravatar.cc/300?img=5" alt="">
+        <img src="https://i.pravatar.cc/300?img=12" alt="">
+        <img src="https://i.pravatar.cc/300?img=53" alt="">
+        <img src="https://i.pravatar.cc/300?img=45" alt="">
+        <img src="https://i.pravatar.cc/300?img=13" alt="">
+        <img src="https://i.pravatar.cc/300?img=16" alt="">
+        <img src="https://i.pravatar.cc/300?img=20" alt="">
+        <img src="https://i.pravatar.cc/300?img=29" alt="">
+        <img src="https://i.pravatar.cc/300?img=33" alt="">
+        <img src="https://i.pravatar.cc/300?img=36" alt="">
+        <img src="https://i.pravatar.cc/300?img=40" alt="">
+      </div>
+    </div>
+
+    <!-- PAGE: PROFILE 1 - Димон -->
+    <div id="page-profile1" class="page">
+      <div class="back-btn" onclick="showPage('feed')">← Назад к новостям</div>
+      <div class="profile-card">
+        <div class="profile-cover"></div>
+        <div class="profile-avatar-container">
+          <img class="profile-avatar" src="https://i.pravatar.cc/200?img=11" alt="">
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">Дмитрий "Хакер" Козлов</div>
+          <div class="profile-status">Online 🟢</div>
+          <div class="profile-details">
+            <span>🎂 18 лет (уже 7 лет)</span>
+            <span>📍 Подвал маминого дома</span>
+            <span>💼 Senior JavaScript, Middle Python, Junior в жизни</span>
+          </div>
+        </div>
+        <div class="profile-tabs">
+          <div class="profile-tab active">Запись</div>
+          <div class="profile-tab">Информация</div>
+          <div class="profile-tab">Друзья</div>
+          <div class="profile-tab">Фото</div>
+        </div>
+        <div class="profile-section">
+          <h3>🎓 Образование</h3>
+          <div style="font-size:13px; color:#bbb;">
+            <div>• Курсы "Java за 24 часа" — не осилил</div>
+            <div>• Универ им. Гыгы — Факультет "Удаленка и кринж"</div>
+            <div>• Самообучение: YouTube + Stack Overflow (copy-paste мой конек)</div>
+          </div>
+        </div>
+        <div class="profile-section">
+          <h3>📝 Последние записи</h3>
+          <div style="font-size:13px; color:#bbb;">
+            <div style="padding:8px 0; border-bottom:1px solid #1e1e30;">
+              <strong style="color:#e0e0e0;">Дима:</strong> ребят, я запилил нейросеть которая определяет по фотке лицо человека и пишет "ну и ебало"<br>
+              <span style="color:#666;">12 минут назад • ❤️ 34</span>
+            </div>
+            <div style="padding:8px 0; border-bottom:1px solid #1e1e30;">
+              <strong style="color:#e0e0e0;">Дима:</strong> батя сказал иди работать. Я устроился тестировщиком в Тинькофф. Тестирую как быстро они мне отказ пришлют 🏆<br>
+              <span style="color:#666;">Вчера • ❤️ 89</span>
+            </div>
+          </div>
+        </div>
+        <div class="profile-section">
+          <h3>📸 Фото (3)</h3>
+          <div class="profile-photo-grid">
+            <img src="https://i.pravatar.cc/200?img=11" alt="">
+            <img src="https://i.pravatar.cc/200?img=68" alt="">
+            <img src="https://i.pravatar.cc/200?img=53" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: PROFILE 2 - Кристина -->
+    <div id="page-profile2" class="page">
+      <div class="back-btn" onclick="showPage('feed')">← Назад к новостям</div>
+      <div class="profile-card">
+        <div class="profile-cover" style="background: linear-gradient(135deg, #3a1a3e, #5a2a5e, #2a1a4e);"></div>
+        <div class="profile-avatar-container">
+          <img class="profile-avatar" src="https://i.pravatar.cc/200?img=5" alt="">
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">Кристина "Мать Тара" Смирнова</div>
+          <div class="profile-status">Online 🟢 (набрать карты Таро)</div>
+          <div class="profile-details">
+            <span>🎂 19 лет (в прошлой жизни — жрица Исиды)</span>
+            <span>📍 Москва, Уютненькая</span>
+            <span>💼 Астролог • Нумеролог • Мастер по чистке кармы (дорого)</span>
+          </div>
+        </div>
+        <div class="profile-tabs">
+          <div class="profile-tab active">Запись</div>
+          <div class="profile-tab">Информация</div>
+          <div class="profile-tab">Друзья</div>
+          <div class="profile-tab">Фото</div>
+        </div>
+        <div class="profile-section">
+          <h3>📖 О себе</h3>
+          <div style="font-size:13px; color:#bbb;">
+            ✨ Луна в 7 доме — поэтому я привлекаю токсичных абьюзеров<br>
+            🌿 Не пью, не курю, но ставлю свечи на отворот бывшего<br>
+            💅 Когда узнала что он изменил — сделала приворот на черную свечу. Теперь у него прыщи и геморрой кармический
+          </div>
+        </div>
+        <div class="profile-section">
+          <h3>📝 Последние записи</h3>
+          <div style="font-size:13px; color:#bbb;">
+            <div style="padding:8px 0; border-bottom:1px solid #1e1e30;">
+              <strong style="color:#e0e0e0;">Кристина:</strong> Расклад дня: утро — кофе, день — истерика, вечер — "все мужики козлы"<br>
+              <span style="color:#666;">3 часа назад • ❤️ 56</span>
+            </div>
+            <div style="padding:8px 0; border-bottom:1px solid #1e1e30;">
+              <strong style="color:#e0e0e0;">Кристина:</strong> Срочно! Кто знает хорошего экстрасенса? А то моя бабка-шептуха сказала у меня сглаз и надо обновить айфон ✨<br>
+              <span style="color:#666;">Вчера • ❤️ 128</span>
+            </div>
+          </div>
+        </div>
+        <div class="profile-section">
+          <h3>📸 Фото (3)</h3>
+          <div class="profile-photo-grid">
+            <img src="https://i.pravatar.cc/200?img=5" alt="">
+            <img src="https://i.pravatar.cc/200?img=16" alt="">
+            <img src="https://i.pravatar.cc/200?img=25" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: PROFILE 3 - Саня -->
+    <div id="page-profile3" class="page">
+      <div class="back-btn" onclick="showPage('feed')">← Назад к новостям</div>
+      <div class="profile-card">
+        <div class="profile-cover" style="background: linear-gradient(135deg, #1a2a1e, #2a3a1e, #1a1a1a);"></div>
+        <div class="profile-avatar-container">
+          <img class="profile-avatar" src="https://i.pravatar.cc/200?img=12" alt="">
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">Саша "Качок с району" Петров</div>
+          <div class="profile-status">Online 🟢 (только что убил спину)</div>
+          <div class="profile-details">
+            <span>🎂 22 года (15 из них в зале)</span>
+            <span>📍 Качалка • Дом • Качалка</span>
+            <span>💼 Личный тренер / Криптоинвестор (минус 2 квартиры)</span>
+          </div>
+        </div>
+        <div class="profile-tabs">
+          <div class="profile-tab active">Запись</div>
+          <div class="profile-tab">Информация</div>
+          <div class="profile-tab">Друзья</div>
+          <div class="profile-tab">Фото</div>
+        </div>
+        <div class="profile-section">
+          <h3>🏆 Достижения</h3>
+          <div style="font-size:13px; color:#bbb;">
+            <div>• КМС по жиму лежа (от дивана до холодильника)</div>
+            <div>• Съел 300 яиц за месяц (Галя, прости)</div>
+            <div>• Инвестировал в LUNA — теперь ем гречку с горчицей 💪</div>
+          </div>
+        </div>
+        <div class="profile-section">
+          <h3>📝 Последние записи</h3>
+          <div style="font-size:13px; color:#bbb;">
+            <div style="padding:8px 0; border-bottom:1px solid #1e1e30;">
+              <strong style="color:#e0e0e0;">Саня:</strong> Сегодняшняя тренировка: ноги 🔥<br>
+              Приседал 120. Потом упал. Потом лежал и думал о смысле жизни. Потом поел.<br>
+              Завтра грудные — ждите сторис с логотипом зала на размытом фоне<br>
+              <span style="color:#666;">5 часов назад • ❤️ 44</span>
+            </div>
+            <div style="padding:8px 0; border-bottom:1px solid #1e1e30;">
+              <strong style="color:#e0e0e0;">Саня:</strong> Кто шарит за крипту? Я тут залил последние 20к в Shiba Inu 2.0. Говорят ракета скоро 🚀🚀🚀<br>
+              UPD: ребят, как вывести деньги?<br>
+              <span style="color:#666;">2 дня назад • ❤️ 12</span>
+            </div>
+          </div>
+        </div>
+        <div class="profile-section">
+          <h3>📸 Фото (3)</h3>
+          <div class="profile-photo-grid">
+            <img src="https://i.pravatar.cc/200?img=12" alt="">
+            <img src="https://i.pravatar.cc/200?img=13" alt="">
+            <img src="https://i.pravatar.cc/200?img=64" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right sidebar -->
+  <div class="right-sidebar">
+    <div class="ad-box">
+      <div class="ad-label">Реклама</div>
+      <img src="https://i.pravatar.cc/260?img=66" alt="">
+      <div style="font-size:13px; color:#4a76a8; margin-top:6px; cursor:pointer;">💊 Курсы по SQL от Димона — скидка 99%!</div>
+      <div style="font-size:11px; color:#666;">Перейти →</div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title">🎵 Музыка</div>
+      <div class="music-item">🎵 Instasamka — За деньги да (2:30)</div>
+      <div class="music-item">🎵 МС Пох — Салам пополам (3:15)</div>
+      <div class="music-item">🎵 Король и Шут — Лесник (ремикс в ритме качалки) (4:20)</div>
+      <div class="music-item">🎵 Моргенштерн — Я НЕ ЗНАЮ (feat. грусть) (2:00)</div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title">👥 Друзья онлайн (3)</div>
+      <div class="friend-item" onclick="showPage('profile2')">
+        <img class="friend-avatar" src="https://i.pravatar.cc/100?img=5" alt="">
+        <div>
+          <div class="friend-name">Кристина Смирнова</div>
+          <div class="friend-online">Online</div>
+        </div>
+      </div>
+      <div class="friend-item">
+        <img class="friend-avatar" src="https://i.pravatar.cc/100?img=53" alt="">
+        <div>
+          <div class="friend-name">Батя</div>
+          <div class="friend-online">Online</div>
+        </div>
+      </div>
+      <div class="friend-item" onclick="showPage('profile3')">
+        <img class="friend-avatar" src="https://i.pravatar.cc/100?img=12" alt="">
+        <div>
+          <div class="friend-name">Саня Петров</div>
+          <div class="friend-online">10 мин назад</div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:8px; font-size:12px; color:#4a76a8; cursor:pointer;">Все друзья (12)</div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title">📊 Опрос дня</div>
+      <div style="font-size:13px; color:#bbb; margin-bottom:6px;">Кто ты сегодня?</div>
+      <div class="poll-bar"><div class="poll-fill" style="width:45%"><span class="poll-label">Ленивая жопка</span><span class="poll-pct">45%</span></div></div>
+      <div class="poll-bar"><div class="poll-fill" style="width:30%"><span class="poll-label">Гений программирования</span><span class="poll-pct">30%</span></div></div>
+      <div class="poll-bar"><div class="poll-fill" style="width:25%"><span class="poll-label">Грустный пирожок</span><span class="poll-pct">25%</span></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + page);
+  if (el) el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
