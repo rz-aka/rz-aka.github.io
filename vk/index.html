@@ -564,82 +564,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
     <div id="page-flappybeard" class="page">
       <div class="back-btn" onclick="showPage('games')">← Назад к играм</div>
       <h2 style="font-size:18px; margin-bottom:12px; color:#e0e0e0;">🧔 Flappy Beard</h2>
-      <div style="background:#12121e; border-radius:8px; border:1px solid #1e1e30; padding:20px; margin-bottom:12px;">
-        <!-- Game canvas area -->
-        <div style="background:#1a1a2e; border-radius:8px; padding:40px 20px; position:relative; overflow:hidden; height:350px;">
-          <!-- Sky -->
-          <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(180deg, #1a2a3e, #2a1a2e);"></div>
-          <!-- Bearded head (player) - center left -->
-          <div style="position:absolute; top:100px; left:80px; z-index:10; animation: float 1s ease-in-out infinite alternate;">
-            <!-- Head -->
-            <div style="width:50px; height:50px; background:#d4a574; border-radius:50%; position:relative; margin-left:10px;">
-              <!-- Eyes -->
-              <div style="position:absolute; top:14px; left:10px; width:8px; height:8px; background:#fff; border-radius:50%;">
-                <div style="width:4px; height:4px; background:#000; border-radius:50%; margin:2px;"></div>
-              </div>
-              <div style="position:absolute; top:14px; right:10px; width:8px; height:8px; background:#fff; border-radius:50%;">
-                <div style="width:4px; height:4px; background:#000; border-radius:50%; margin:2px;"></div>
-              </div>
-              <!-- Mouth -->
-              <div style="position:absolute; bottom:8px; left:50%; transform:translateX(-50%); width:20px; height:4px; background:#8B4513; border-radius:2px;"></div>
-            </div>
-            <!-- Beard -->
-            <div style="width:56px; height:40px; background:#555; border-radius:0 0 28px 28px; margin-top:-4px; position:relative;">
-              <div style="position:absolute; top:5px; left:8px; width:2px; height:30px; background:#666; transform:rotate(-10deg);"></div>
-              <div style="position:absolute; top:5px; left:16px; width:2px; height:30px; background:#666; transform:rotate(-5deg);"></div>
-              <div style="position:absolute; top:5px; left:24px; width:2px; height:30px; background:#666;"></div>
-              <div style="position:absolute; top:5px; left:32px; width:2px; height:30px; background:#666; transform:rotate(5deg);"></div>
-              <div style="position:absolute; top:5px; left:40px; width:2px; height:30px; background:#666; transform:rotate(10deg);"></div>
-            </div>
-            <!-- Wings (ears) -->
-            <div style="position:absolute; top:-2px; left:-10px; width:12px; height:20px; background:#d4a574; border-radius:50% 50% 0 0; transform:rotate(-20deg);"></div>
-            <div style="position:absolute; top:-2px; right:-10px; width:12px; height:20px; background:#d4a574; border-radius:50% 50% 0 0; transform:rotate(20deg);"></div>
-          </div>
-          <!-- Obstacle 1: Comb (top) -->
-          <div style="position:absolute; top:60px; right:200px; z-index:5; animation: moveLeft 4s linear infinite;">
-            <div style="width:20px; height:80px; background:#4a4a6a; border-radius:4px; position:relative;">
-              <div style="position:absolute; top:-10px; left:2px; width:4px; height:12px; background:#888; border-radius:2px;"></div>
-              <div style="position:absolute; top:-10px; left:8px; width:4px; height:12px; background:#888; border-radius:2px;"></div>
-              <div style="position:absolute; top:-10px; left:14px; width:4px; height:12px; background:#888; border-radius:2px;"></div>
-              <div style="position:absolute; top:-10px; left:2px; width:4px; height:12px; background:#888; border-radius:2px;"></div>
-            </div>
-            <div style="font-size:10px; color:#888; text-align:center; margin-top:4px;">Расчёска</div>
-          </div>
-          <!-- Obstacle 2: Shampoo (bottom) -->
-          <div style="position:absolute; bottom:80px; right:100px; z-index:5; animation: moveLeft 5s linear infinite; animation-delay:1s;">
-            <div style="width:30px; height:70px; background:#4a8a4a; border-radius:6px; position:relative;">
-              <div style="position:absolute; top:-8px; left:5px; width:20px; height:10px; background:#3a7a3a; border-radius:4px 4px 0 0;"></div>
-              <div style="position:absolute; top:15px; left:5px; font-size:8px; color:#fff;">Шамп</div>
-            </div>
-            <div style="font-size:10px; color:#888; text-align:center; margin-top:4px;">Шампунь</div>
-          </div>
-          <!-- Obstacle 3: Scissors (top) -->
-          <div style="position:absolute; top:50px; right:320px; z-index:5; animation: moveLeft 4.5s linear infinite; animation-delay:2s;">
-            <div style="display:flex; gap:2px;">
-              <div style="width:4px; height:40px; background:#aaa; border-radius:2px; transform:rotate(-10deg);"></div>
-              <div style="width:4px; height:40px; background:#aaa; border-radius:2px; transform:rotate(10deg);"></div>
-            </div>
-            <div style="font-size:10px; color:#888; text-align:center; margin-top:2px;">Ножницы</div>
-          </div>
-          <!-- Score -->
-          <div style="position:absolute; top:10px; right:20px; z-index:20; font-size:36px; font-weight:700; color:#4a76a8; opacity:0.3;">0</div>
-          <!-- Ground -->
-          <div style="position:absolute; bottom:0; left:0; right:0; height:40px; background:#2a2a1a; border-top:2px solid #3a3a2a;"></div>
-        </div>
-        <div style="text-align:center; margin-top:16px;">
-          <div style="font-size:16px; font-weight:600; color:#e0e0e0;">Flappy Beard</div>
-          <div style="font-size:13px; color:#888; margin-top:4px;">Кликни по голове — она летит вверх. Не врежься в расчёску, шампунь или ножницы!</div>
-          <div style="display:flex; gap:20px; justify-content:center; margin-top:12px;">
-            <div><span style="color:#4a76a8;">🏆</span> Рекорд: <strong style="color:#e0e0e0;">2</strong> (Саня)</div>
-            <div><span style="color:#4a76a8;">👤</span> Твой счёт: <strong style="color:#e0e0e0;">0</strong></div>
-            <div><span style="color:#4a76a8;">👥</span> Друзья: <strong style="color:#e0e0e0;">666</strong></div>
-          </div>
-          <div style="margin-top:14px; padding:10px; background:#1e1e35; border-radius:8px;">
-            <span style="color:#888; font-size:13px;">👆 Нажми «Играть» и попробуй побить рекорд Сани (невозможно)</span>
-          </div>
-          <div style="margin-top:14px; display:flex; justify-content:center; gap:12px;">
-            <span style="background:#4a76a8; padding:10px 30px; border-radius:8px; font-size:14px; font-weight:600; color:#fff; cursor:pointer;">▶ Играть</span>
-            <span style="background:#1e1e35; padding:10px 20px; border-radius:8px; font-size:14px; color:#888; cursor:pointer;">🏆 Таблица рекордов</span>
+      <div style="background:#12121e; border-radius:8px; border:1px solid #1e1e30; padding:12px; margin-bottom:12px;">
+        <canvas id="gameCanvas" width="400" height="500" style="width:100%; max-width:400px; height:auto; aspect-ratio:400/500; display:block; margin:0 auto; border-radius:8px; cursor:pointer;"></canvas>
+        <div style="text-align:center; margin-top:10px;">
+          <div style="font-size:13px; color:#888;">👆 Кликни / Пробел — лететь вверх. Не врежься в расчёски, шампуни и ножницы!</div>
+          <div style="display:flex; gap:16px; justify-content:center; margin-top:8px;">
+            <span id="fbScore" style="font-size:14px; color:#aaa;">Счёт: <strong style="color:#e0e0e0;">0</strong></span>
+            <span style="font-size:14px; color:#aaa;">Рекорд: <strong id="fbBest" style="color:#e0e0e0;">2</strong> <span style="color:#888;">(Саня)</span></span>
           </div>
         </div>
       </div>
@@ -652,6 +583,315 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
         </div>
       </div>
     </div>
+    <script>
+    (function(){
+      const canvas = document.getElementById('gameCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const W = 400, H = 500;
+      canvas.width = W; canvas.height = H;
+
+      let game = { state: 'waiting', score: 0, best: parseInt(localStorage.getItem('fbBest')||'2') };
+
+      const bird = { x: 80, y: 200, r: 18, vy: 0, gravity: 0.25, jump: -5 };
+      let pipes = [];
+      let pipeTimer = 0;
+      const PIPE_W = 36;
+      const PIPE_GAP = 130;
+      const PIPE_SPEED = 2;
+      const GROUND_Y = H - 40;
+
+      function resetGame() {
+        bird.y = 200; bird.vy = 0;
+        pipes = []; pipeTimer = 0;
+        game.score = 0; game.state = 'playing';
+        updateScoreDisplay();
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('fbScore').innerHTML = 'Счёт: <strong style="color:#e0e0e0;">' + game.score + '</strong>';
+        document.getElementById('fbBest').textContent = game.best;
+      }
+
+      function spawnPipe() {
+        const minH = 50, maxH = H - GROUND_Y - PIPE_GAP - 50;
+        const topH = minH + Math.random() * (maxH - minH);
+        const type = Math.floor(Math.random() * 3);
+        pipes.push({ x: W, topH, type, scored: false });
+      }
+
+      function drawBeardHead(x, y, r) {
+        // face
+        ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fillStyle = '#d4a574'; ctx.fill(); ctx.strokeStyle = '#b8946a'; ctx.lineWidth = 1; ctx.stroke();
+        // ears
+        ctx.beginPath(); ctx.ellipse(x - r - 3, y - 2, 7, 12, -0.3, 0, Math.PI * 2);
+        ctx.fillStyle = '#c49a6a'; ctx.fill();
+        ctx.beginPath(); ctx.ellipse(x + r + 3, y - 2, 7, 12, 0.3, 0, Math.PI * 2);
+        ctx.fillStyle = '#c49a6a'; ctx.fill();
+        // eyes
+        ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.ellipse(x - 6, y - 4, 6, 7, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.ellipse(x + 6, y - 4, 6, 7, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#222'; ctx.beginPath(); ctx.arc(x - 5, y - 3, 3.5, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(x + 7, y - 3, 3.5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(x - 4, y - 5, 1.5, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(x + 8, y - 5, 1.5, 0, Math.PI * 2); ctx.fill();
+        // eyebrows
+        ctx.strokeStyle = '#8B6914'; ctx.lineWidth = 2.5;
+        ctx.beginPath(); ctx.moveTo(x - 12, y - 12); ctx.lineTo(x - 2, y - 14); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x + 12, y - 12); ctx.lineTo(x + 2, y - 14); ctx.stroke();
+        // mouth
+        ctx.beginPath(); ctx.arc(x, y + 6, 6, 0.1, Math.PI - 0.1);
+        ctx.strokeStyle = '#8B4513'; ctx.lineWidth = 2; ctx.stroke();
+        // beard
+        const bx = x, by = y + r - 4;
+        ctx.fillStyle = '#555';
+        ctx.beginPath(); ctx.moveTo(bx - r + 4, by);
+        ctx.quadraticCurveTo(bx - r - 2, by + r + 14, bx - 2, by + r + 16);
+        ctx.quadraticCurveTo(bx, by + r + 18, bx + 2, by + r + 16);
+        ctx.quadraticCurveTo(bx + r + 2, by + r + 14, bx + r - 4, by);
+        ctx.fill();
+        // beard hairs
+        for (let i = 0; i < 8; i++) {
+          const hx = bx - 12 + i * 3.5 + Math.random() * 2;
+          const hy = by + 4 + i * 2.5;
+          ctx.strokeStyle = '#666'; ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(hx + (i - 4) * 0.5, hy + 14 + Math.random() * 4); ctx.stroke();
+        }
+      }
+
+      function drawComb(x, y, h) {
+        // comb body
+        const grad = ctx.createLinearGradient(x, y, x + PIPE_W, y);
+        grad.addColorStop(0, '#5a5a8a'); grad.addColorStop(1, '#3a3a6a');
+        ctx.fillStyle = grad; ctx.fillRect(x, y, PIPE_W, h);
+        ctx.strokeStyle = '#4a4a7a'; ctx.lineWidth = 1; ctx.strokeRect(x, y, PIPE_W, h);
+        // teeth
+        ctx.fillStyle = '#888';
+        for (let i = 0; i < 6; i++) {
+          const tx = x + 4 + i * 5.5;
+          ctx.fillRect(tx, y - 8, 3, 10);
+        }
+        // label
+        ctx.fillStyle = '#aaa'; ctx.font = '8px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('📏', x + PIPE_W/2, y + h/2 + 4);
+      }
+
+      function drawShampoo(x, y, h) {
+        // bottle
+        const grad = ctx.createLinearGradient(x, y, x + PIPE_W, y);
+        grad.addColorStop(0, '#5aaa5a'); grad.addColorStop(1, '#3a8a3a');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        const bw = PIPE_W - 4;
+        ctx.roundRect(x + 2, y, bw, h, 4);
+        ctx.fill();
+        ctx.strokeStyle = '#2a7a2a'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.roundRect(x + 2, y, bw, h, 4); ctx.stroke();
+        // cap
+        ctx.fillStyle = '#2a6a2a';
+        ctx.fillRect(x + 8, y - 6, 20, 8);
+        // label
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 9px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('🧴', x + PIPE_W/2, y + h/2 + 4);
+      }
+
+      function drawScissors(x, y, h) {
+        ctx.strokeStyle = '#ccc'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(x + PIPE_W/2 - 6, y + h); ctx.lineTo(x + PIPE_W/2 + 4, y - 4); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x + PIPE_W/2 + 6, y + h); ctx.lineTo(x + PIPE_W/2 - 4, y - 4); ctx.stroke();
+        // handles
+        ctx.strokeStyle = '#e44'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.arc(x + PIPE_W/2 - 6, y + h - 2, 6, 0, Math.PI * 2); ctx.stroke();
+        ctx.beginPath(); ctx.arc(x + PIPE_W/2 + 6, y + h - 2, 6, 0, Math.PI * 2); ctx.stroke();
+        ctx.fillStyle = '#aaa'; ctx.font = '8px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('✂️', x + PIPE_W/2, y + h/2 + 4);
+      }
+
+      function drawBackground() {
+        // sky gradient
+        const grad = ctx.createLinearGradient(0, 0, 0, H);
+        grad.addColorStop(0, '#1a2a3e'); grad.addColorStop(0.6, '#2a1a2e'); grad.addColorStop(1, '#1e1e1e');
+        ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
+        // stars
+        ctx.fillStyle = 'rgba(255,255,255,0.15)';
+        for (let i = 0; i < 30; i++) {
+          const sx = (i * 137 + 50) % W, sy = (i * 89 + 30) % (H - GROUND_Y);
+          ctx.beginPath(); ctx.arc(sx, sy, 1 + (i % 2), 0, Math.PI * 2); ctx.fill();
+        }
+        // ground
+        ctx.fillStyle = '#2a2a1a';
+        ctx.fillRect(0, GROUND_Y, W, H - GROUND_Y);
+        ctx.strokeStyle = '#3a3a2a'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(0, GROUND_Y); ctx.lineTo(W, GROUND_Y); ctx.stroke();
+        // grass
+        ctx.fillStyle = '#3a4a2a';
+        ctx.fillRect(0, GROUND_Y, W, 4);
+      }
+
+      function drawPipe(pipe) {
+        const { x, topH, type } = pipe;
+        const bottomY = topH + PIPE_GAP;
+        const bottomH = H - GROUND_Y - bottomY;
+
+        function drawOne(px, py, ph, flipped) {
+          if (type === 0) { // comb
+            if (flipped) {
+              ctx.save(); ctx.translate(px + PIPE_W/2, py + ph/2); ctx.rotate(Math.PI); ctx.translate(-PIPE_W/2, -ph/2);
+              drawComb(-PIPE_W/2, -ph/2, ph); ctx.restore();
+            } else drawComb(px, py, ph);
+          } else if (type === 1) { // shampoo
+            if (flipped) {
+              ctx.save(); ctx.translate(px + PIPE_W/2, py + ph/2); ctx.rotate(Math.PI); ctx.translate(-PIPE_W/2, -ph/2);
+              drawShampoo(-PIPE_W/2, -ph/2, ph); ctx.restore();
+            } else drawShampoo(px, py, ph);
+          } else { // scissors
+            drawScissors(px, py, ph);
+          }
+        }
+
+        // top pipe
+        drawOne(x, 0, topH, false);
+        // bottom pipe with different type
+        const bType = (type + 1) % 3;
+        // shadow
+        ctx.fillStyle = 'rgba(0,0,0,0.15)';
+        ctx.fillRect(x + PIPE_W - 4, 0, 6, topH);
+        ctx.fillRect(x + PIPE_W - 4, bottomY, 6, bottomH);
+
+        // draw bottom with its own type
+        if (bType === 0) { drawComb(x, bottomY, bottomH); }
+        else if (bType === 1) { drawShampoo(x, bottomY, bottomH); }
+        else { drawScissors(x, bottomY, bottomH); }
+      }
+
+      function update() {
+        if (game.state !== 'playing') return;
+
+        bird.vy += bird.gravity;
+        bird.y += bird.vy;
+
+        if (bird.y > GROUND_Y - bird.r) { bird.y = GROUND_Y - bird.r; gameOver(); return; }
+        if (bird.y < bird.r) { bird.y = bird.r; bird.vy = 0; }
+
+        pipeTimer++;
+        if (pipeTimer > 80) { pipeTimer = 0; spawnPipe(); }
+
+        for (let i = pipes.length - 1; i >= 0; i--) {
+          pipes[i].x -= PIPE_SPEED;
+
+          // collision
+          const bx = bird.x, by = bird.y, br = bird.r;
+          const p = pipes[i];
+          if (bx + br > p.x && bx - br < p.x + PIPE_W) {
+            if (by - br < p.topH || by + br > p.topH + PIPE_GAP) {
+              gameOver(); return;
+            }
+          }
+
+          // score
+          if (!p.scored && p.x + PIPE_W < bird.x) {
+            p.scored = true; game.score++;
+            updateScoreDisplay();
+            if (game.score > game.best) { game.best = game.score; localStorage.setItem('fbBest', game.best); updateScoreDisplay(); }
+          }
+
+          if (pipes[i].x + PIPE_W < -20) pipes.splice(i, 1);
+        }
+      }
+
+      function gameOver() {
+        game.state = 'over';
+        if (game.score > game.best) { game.best = game.score; localStorage.setItem('fbBest', game.best); updateScoreDisplay(); }
+      }
+
+      function draw() {
+        drawBackground();
+
+        // pipes
+        for (const p of pipes) drawPipe(p);
+
+        // bird
+        const angle = Math.min(Math.max(bird.vy * 2, -0.5), 1);
+        ctx.save();
+        ctx.translate(bird.x, bird.y);
+        ctx.rotate(angle);
+        drawBeardHead(0, 0, bird.r);
+        ctx.restore();
+
+        // score display
+        if (game.state === 'playing' || game.state === 'over') {
+          ctx.fillStyle = 'rgba(74,118,168,0.25)';
+          ctx.font = 'bold 56px sans-serif'; ctx.textAlign = 'right';
+          ctx.fillText(game.score, W - 20, 65);
+        }
+
+        // overlays
+        if (game.state === 'waiting') {
+          ctx.fillStyle = 'rgba(0,0,0,0.3)';
+          ctx.fillRect(0, 0, W, H);
+          ctx.fillStyle = '#fff'; ctx.font = 'bold 22px sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText('🧔 Flappy Beard', W/2, H/2 - 50);
+          ctx.fillStyle = '#aaa'; ctx.font = '15px sans-serif';
+          ctx.fillText('Кликни чтобы лететь', W/2, H/2);
+          ctx.fillStyle = '#888'; ctx.font = '13px sans-serif';
+          ctx.fillText('Уворачивайся от расчёсок, шампуней и ножниц!', W/2, H/2 + 35);
+        }
+
+        if (game.state === 'over') {
+          ctx.fillStyle = 'rgba(0,0,0,0.5)';
+          ctx.fillRect(0, 0, W, H);
+          ctx.fillStyle = '#e44'; ctx.font = 'bold 32px sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText('💀 Проиграл', W/2, H/2 - 60);
+          ctx.fillStyle = '#e0e0e0'; ctx.font = '20px sans-serif';
+          ctx.fillText('Счёт: ' + game.score, W/2, H/2 - 15);
+          ctx.fillStyle = '#aaa'; ctx.font = '15px sans-serif';
+          ctx.fillText('Рекорд: ' + game.best, W/2, H/2 + 20);
+          ctx.fillStyle = '#4a76a8'; ctx.font = '16px sans-serif';
+          ctx.fillText('👆 Кликни чтобы начать заново', W/2, H/2 + 65);
+        }
+      }
+
+      function loop() {
+        update();
+        draw();
+        requestAnimationFrame(loop);
+      }
+
+      function handleInput(e) {
+        if (e) e.preventDefault();
+        if (game.state === 'waiting') { resetGame(); return; }
+        if (game.state === 'over') { resetGame(); return; }
+        if (game.state === 'playing') { bird.vy = bird.jump; }
+      }
+
+      canvas.addEventListener('click', handleInput);
+      document.addEventListener('keydown', function(e) {
+        if (e.code === 'Space' || e.key === ' ') {
+          e.preventDefault();
+          const pages = document.querySelectorAll('.page');
+          const fbPage = document.getElementById('page-flappybeard');
+          if (fbPage && fbPage.classList.contains('active')) handleInput(e);
+        }
+      });
+
+      // roundRect polyfill for older browsers
+      if (!CanvasRenderingContext2D.prototype.roundRect) {
+        CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+          if (r > w/2) r = w/2; if (r > h/2) r = h/2;
+          this.moveTo(x + r, y);
+          this.arcTo(x + w, y, x + w, y + h, r);
+          this.arcTo(x + w, y + h, x, y + h, r);
+          this.arcTo(x, y + h, x, y, r);
+          this.arcTo(x, y, x + w, y, r);
+          return this;
+        };
+      }
+
+      updateScoreDisplay();
+      loop();
+    })();
+    </script>
 
     <!-- PAGE: FRIENDS -->
     <div id="page-friends" class="page">
