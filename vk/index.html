@@ -154,8 +154,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
       <div class="nav-item active" onclick="showPage('feed')"><span class="nav-icon">🏠</span> Моя страница</div>
       <div class="nav-item" onclick="showPage('feed')"><span class="nav-icon">📰</span> Новости</div>
       <div class="nav-item" onclick="showPage('photos')"><span class="nav-icon">📸</span> Фотографии</div>
-      <div class="nav-item" onclick="showPage('feed')"><span class="nav-icon">🎵</span> Музыка</div>
-      <div class="nav-item" onclick="showPage('feed')"><span class="nav-icon">🎮</span> Игры</div>
+      <div class="nav-item" onclick="showPage('music')"><span class="nav-icon">🎵</span> Музыка</div>
+      <div class="nav-item" onclick="showPage('games')"><span class="nav-icon">🎮</span> Игры</div>
+      <div class="nav-item" onclick="showPage('goods')"><span class="nav-icon">🏪</span> Товары</div>
       <div class="nav-item"><span class="nav-icon">⚙️</span> Настройки</div>
     </div>
   </div>
@@ -279,7 +280,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
         <div class="post-body">
           <div class="post-text">
             Сынок, я тебе 500 рублей на карту кинул. Купи хлеба, молока и если останется — возьми себе чего-нибудь.<br><br>
-            UPD: @Димон, ты когда приедешь??? Мать переживает. И SQL больше не учи, иди лучше на юриста.
+            UPD: @Димон, ты когда приедешь??? Батя переживает. И SQL больше не учи, иди лучше на юриста.
           </div>
         </div>
         <div class="post-actions">
@@ -322,7 +323,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
           <div class="profile-status">Online 🟢</div>
           <div class="profile-details">
             <span>🎂 18 лет (уже 7 лет)</span>
-            <span>📍 Подвал маминого дома</span>
+            <span>📍 Подвал батиного дома</span>
             <span>💼 Senior JavaScript, Middle Python, Junior в жизни</span>
           </div>
         </div>
@@ -373,7 +374,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
           <img class="profile-avatar" src="https://i.pravatar.cc/200?img=5" alt="">
         </div>
         <div class="profile-info">
-          <div class="profile-name">Кристина "Мать Тара" Смирнова</div>
+          <div class="profile-name">Кристина "Батя Тара" Смирнова</div>
           <div class="profile-status">Online 🟢 (набрать карты Таро)</div>
           <div class="profile-details">
             <span>🎂 19 лет (в прошлой жизни — жрица Исиды)</span>
@@ -414,6 +415,120 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
             <img src="https://i.pravatar.cc/200?img=5" alt="">
             <img src="https://i.pravatar.cc/200?img=16" alt="">
             <img src="https://i.pravatar.cc/200?img=25" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: MUSIC -->
+    <div id="page-music" class="page">
+      <div class="back-btn" onclick="showPage('feed')">← Назад к новостям</div>
+      <h2 style="font-size:18px; margin-bottom:12px; color:#e0e0e0;">🎵 Моя музыка</h2>
+      <div class="post">
+        <div class="post-body">
+          <div class="music-item" style="padding:12px 0; border-bottom:1px solid #1e1e30;">🎵 <strong>Инстасамка — За деньги да</strong> <span style="color:#666; margin-left:auto;">2:30</span></div>
+          <div class="music-item" style="padding:12px 0; border-bottom:1px solid #1e1e30;">🎵 <strong>МС Пох — Салам пополам (feat. Батя)</strong> <span style="color:#666; margin-left:auto;">3:15</span></div>
+          <div class="music-item" style="padding:12px 0; border-bottom:1px solid #1e1e30;">🎵 <strong>Король и Шут — Лесник (ремикс в ритме качалки)</strong> <span style="color:#666; margin-left:auto;">4:20</span></div>
+          <div class="music-item" style="padding:12px 0; border-bottom:1px solid #1e1e30;">🎵 <strong>Моргенштерн — Я НЕ ЗНАЮ (feat. грусть)</strong> <span style="color:#666; margin-left:auto;">2:00</span></div>
+          <div class="music-item" style="padding:12px 0; border-bottom:1px solid #1e1e30;">🎵 <strong>Гнойный — Слово пацана (фонк версия)</strong> <span style="color:#666; margin-left:auto;">3:40</span></div>
+          <div class="music-item" style="padding:12px 0; border-bottom:1px solid #1e1e30;">🎵 <strong>Батя — Купи хлеба (акустика)</strong> <span style="color:#666; margin-left:auto;">1:12</span></div>
+          <div class="music-item" style="padding:12px 0; border-bottom:1px solid #1e1e30;">🎵 <strong>Саня — Грифы плачут (посвящение бицепсу)</strong> <span style="color:#666; margin-left:auto;">5:45</span></div>
+          <div class="music-item" style="padding:12px 0;">🎵 <strong>Кристина — Таро-таро-ра (ремикс на сглаз)</strong> <span style="color:#666; margin-left:auto;">2:55</span></div>
+        </div>
+      </div>
+      <div class="post" style="padding:16px;">
+        <h3 style="font-size:14px; font-weight:600; color:#aaa; margin-bottom:8px;">📊 Мой плейлист недели</h3>
+        <div class="poll-bar"><div class="poll-fill" style="width:52%"><span class="poll-label">Грустный фонк</span><span class="poll-pct">52%</span></div></div>
+        <div class="poll-bar"><div class="poll-fill" style="width:28%"><span class="poll-label">Русский рэп про боль</span><span class="poll-pct">28%</span></div></div>
+        <div class="poll-bar"><div class="poll-fill" style="width:20%"><span class="poll-label">Песни про батю</span><span class="poll-pct">20%</span></div></div>
+        <div class="post-action" style="margin-top:10px; color:#4a76a8;">🎧 Слушать всё</div>
+      </div>
+    </div>
+
+    <!-- PAGE: GAMES -->
+    <div id="page-games" class="page">
+      <div class="back-btn" onclick="showPage('feed')">← Назад к новостям</div>
+      <h2 style="font-size:18px; margin-bottom:12px; color:#e0e0e0;">🎮 Игры VK</h2>
+      <div class="post">
+        <div class="post-body">
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid #1e1e30;">
+            <div style="width:60px; height:60px; background:#2a2a4a; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:28px;">🐔</div>
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Куриная ферма бати</div>
+              <div style="font-size:12px; color:#666;">Собери 1000 кур и продай их на рынке. Каждые 5 минут приходит батя и забирает петуха.</div>
+              <div style="font-size:12px; color:#4a76a8; margin-top:4px;">🔥 Играют 1 234 друга</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid #1e1e30;">
+            <div style="width:60px; height:60px; background:#2a2a4a; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:28px;">💪</div>
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Силовой жим Online</div>
+              <div style="font-size:12px; color:#666;">Жми штангу пальцем! Рекорд — 0.3 кг за 2 часа. Саня уже задонатил 5000₽ на гейнер.</div>
+              <div style="font-size:12px; color:#4a76a8; margin-top:4px;">🔥 Играют 856 друзей</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid #1e1e30;">
+            <div style="width:60px; height:60px; background:#2a2a4a; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:28px;">🃏</div>
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Таро-пасьянс "Сглаз"</div>
+              <div style="font-size:12px; color:#666;">Гадай на картах Таро, чтобы узнать изменяет ли тебе твой молодой человек. Спойлер: да.</div>
+              <div style="font-size:12px; color:#4a76a8; margin-top:4px;">🔥 Играют 3 217 друзей</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 0;">
+            <div style="width:60px; height:60px; background:#2a2a4a; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:28px;">💰</div>
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#e0e0e0;">Крипто-качок 2026</div>
+              <div style="font-size:12px; color:#666;">Качай бицепс и майни биткоин локтем. Каждые 10 уровней батя приходит с вопросом "ты когда женишься?".</div>
+              <div style="font-size:12px; color:#4a76a8; margin-top:4px;">🔥 Играют 543 друга</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post" style="padding:16px;">
+        <div style="text-align:center;">
+          <div style="font-size:13px; color:#aaa;">🏆 Лучший игрок недели</div>
+          <div style="font-size:16px; font-weight:600; color:#e0e0e0; margin-top:4px;">Димон — 48 часов в Куриной ферме</div>
+          <div style="font-size:12px; color:#666;">Награда: скидка 50% на курс SQL от бати</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: GOODS -->
+    <div id="page-goods" class="page">
+      <div class="back-btn" onclick="showPage('feed')">← Назад к новостям</div>
+      <h2 style="font-size:18px; margin-bottom:12px; color:#e0e0e0;">🏪 Товары VK</h2>
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px;">
+        <div class="post" style="cursor:pointer;">
+          <img src="https://i.pravatar.cc/400?img=68" style="width:100%; height:200px; object-fit:cover; border-radius:8px 8px 0 0;">
+          <div style="padding:12px;">
+            <div style="font-weight:600; font-size:14px;">Курсы SQL от Димона</div>
+            <div style="font-size:12px; color:#666; margin-top:4px;">Пиши инъекции как настоящий хакер. Бонус: скидка 50% на пиццу (способ не работает).</div>
+            <div style="font-size:16px; font-weight:700; color:#4a76a8; margin-top:6px;">999 ₽ <span style="font-size:12px; color:#666; text-decoration:line-through;">19 999 ₽</span></div>
+          </div>
+        </div>
+        <div class="post" style="cursor:pointer;">
+          <img src="https://i.pravatar.cc/400?img=64" style="width:100%; height:200px; object-fit:cover; border-radius:8px 8px 0 0;">
+          <div style="padding:12px;">
+            <div style="font-weight:600; font-size:14px;">Гейнер "Бат-Протеин"</div>
+            <div style="font-size:12px; color:#666; margin-top:4px;">Состав: сыворотка, песок, мотивация. После банки гейнера ты сможешь поднять только вилку с пельменем.</div>
+            <div style="font-size:16px; font-weight:700; color:#4a76a8; margin-top:6px;">2 499 ₽ <span style="font-size:12px; color:#666; text-decoration:line-through;">4 999 ₽</span></div>
+          </div>
+        </div>
+        <div class="post" style="cursor:pointer;">
+          <img src="https://i.pravatar.cc/400?img=25" style="width:100%; height:200px; object-fit:cover; border-radius:8px 8px 0 0;">
+          <div style="padding:12px;">
+            <div style="font-weight:600; font-size:14px;">Карты Таро "Кристина"</div>
+            <div style="font-size:12px; color:#666; margin-top:4px;">Колода для начинающих астрологинь. В комплекте: инструкция "Как найти абьюзера по звездам" фиолетовая свеча и соль против сглаза.</div>
+            <div style="font-size:16px; font-weight:700; color:#4a76a8; margin-top:6px;">1 990 ₽</div>
+          </div>
+        </div>
+        <div class="post" style="cursor:pointer;">
+          <img src="https://i.pravatar.cc/400?img=53" style="width:100%; height:200px; object-fit:cover; border-radius:8px 8px 0 0;">
+          <div style="padding:12px;">
+            <div style="font-weight:600; font-size:14px;">Пельмени "От бати"</div>
+            <div style="font-size:12px; color:#666; margin-top:4px;">Ручная лепка. 1 кг. В каждой пачке — записка "Сынок, когда внуки?". С любовью, ваш Батя.</div>
+            <div style="font-size:16px; font-weight:700; color:#4a76a8; margin-top:6px;">349 ₽ <span style="font-size:12px; color:#666; text-decoration:line-through;">450 ₽</span></div>
           </div>
         </div>
       </div>
@@ -487,7 +602,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
       <div style="font-size:11px; color:#666;">Перейти →</div>
     </div>
 
-    <div class="widget">
+    <div class="widget" style="cursor:pointer;" onclick="showPage('music')">
       <div class="widget-title">🎵 Музыка</div>
       <div class="music-item">🎵 Instasamka — За деньги да (2:30)</div>
       <div class="music-item">🎵 МС Пох — Салам пополам (3:15)</div>
