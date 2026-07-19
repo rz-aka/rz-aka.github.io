@@ -157,7 +157,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
       <div class="nav-item" onclick="showPage('feed')"><span class="nav-icon">📰</span> Новости</div>
       <div class="nav-item" onclick="showPage('photos')"><span class="nav-icon">📸</span> Фотографии</div>
       <div class="nav-item" onclick="showPage('music')"><span class="nav-icon">🎵</span> Музыка</div>
-      <div class="nav-item" onclick="showPage('games')"><span class="nav-icon">🎮</span> Игры</div>
+      <div class="nav-item" onclick="window.location.href='/vk/games/'"><span class="nav-icon">🎮</span> Игры</div>
       <div class="nav-item" onclick="showPage('goods')"><span class="nav-icon">🏪</span> Товары</div>
       <div class="nav-item" onclick="showPage('friends')"><span class="nav-icon">👥</span> Друзья</div>
       <div class="nav-item" onclick="showPage('settings')"><span class="nav-icon">⚙️</span> Настройки</div>
@@ -562,7 +562,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
 
     <!-- PAGE: FLAPPY BEARD -->
     <div id="page-flappybeard" class="page">
-      <div class="back-btn" onclick="showPage('games')">← Назад к играм</div>
+      <div class="back-btn" onclick="window.location.href='/vk/games/'">← Назад к играм</div>
       <h2 style="font-size:18px; margin-bottom:12px; color:#e0e0e0;">🧔 Flappy Beard</h2>
       <div style="background:#12121e; border-radius:8px; border:1px solid #1e1e30; padding:12px; margin-bottom:12px;">
         <canvas id="gameCanvas" width="400" height="500" style="width:100%; max-width:400px; height:auto; aspect-ratio:400/500; display:block; margin:0 auto; border-radius:8px; cursor:pointer;"></canvas>
