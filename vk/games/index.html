@@ -72,7 +72,7 @@ body {
   font-size: 20px;
   font-weight: 700;
   color: #e0e0e0;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   text-align: center;
 }
 
@@ -88,13 +88,13 @@ body {
 #gameCanvas {
   width: 100%;
   max-width: 600px;
-  height: auto;
-  aspect-ratio: 800/500;
+  height: 400px;
   display: block;
   margin: 0 auto;
   border-radius: 8px;
   cursor: pointer;
   background: #1a1a2e;
+  touch-action: none;
 }
 
 /* Stats panel */
@@ -167,203 +167,6 @@ body {
   border-color: #5b8ec9;
 }
 
-/* Messages */
-.message-panel {
-  background: #1a1a2e;
-  border-radius: 8px;
-  border: 1px solid #2a2a4a;
-  padding: 12px;
-  margin-top: 12px;
-  max-height: 150px;
-  overflow-y: auto;
-}
-
-.message {
-  font-size: 13px;
-  color: #bbb;
-  margin-bottom: 8px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #2a2a4a;
-}
-
-.message:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-}
-
-.message.warning {
-  color: #ffa500;
-}
-
-.message.success {
-  color: #4CAF50;
-}
-
-.message.error {
-  color: #ff5555;
-}
-
-/* Market section */
-.market-section {
-  background: #12121e;
-  border-radius: 8px;
-  border: 1px solid #1e1e30;
-  padding: 16px;
-  margin-top: 12px;
-}
-
-.market-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #aaa;
-  margin-bottom: 12px;
-}
-
-.market-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #1e1e30;
-}
-
-.market-item:last-child {
-  border-bottom: none;
-}
-
-.market-name {
-  font-size: 14px;
-  color: #e0e0e0;
-}
-
-.market-price {
-  font-size: 14px;
-  color: #4a76a8;
-  font-weight: 600;
-}
-
-.market-btn {
-  background: #2a2a4a;
-  border: 1px solid #4a76a8;
-  color: #4a76a8;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  cursor: pointer;
-  margin-left: 12px;
-}
-
-.market-btn:hover {
-  background: #4a76a8;
-  color: #fff;
-}
-
-.market-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Timer display */
-.timer-display {
-  text-align: center;
-  margin-top: 12px;
-  padding: 12px;
-  background: #1a1a2e;
-  border-radius: 8px;
-  border: 1px solid #2a2a4a;
-}
-
-.timer-label {
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 4px;
-}
-
-.timer-value {
-  font-size: 16px;
-  color: #ffa500;
-  font-weight: 600;
-}
-
-/* Chicken counter */
-.chicken-counter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.chicken-icon {
-  font-size: 24px;
-}
-
-.chicken-count {
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .container {
-    padding: 8px;
-    margin-top: 52px;
-  }
-  
-  .stats-panel {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .stat-item {
-    min-width: auto;
-  }
-}
-
-/* Animations */
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-.chicken-icon {
-  animation: pulse 2s infinite;
-}
-
-/* Game over overlay */
-.game-over {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  display: none;
-}
-
-.game-over.active {
-  display: flex;
-}
-
-.game-over h2 {
-  font-size: 24px;
-  color: #ff5555;
-  margin-bottom: 12px;
-}
-
-.game-over p {
-  font-size: 16px;
-  color: #aaa;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
 /* Instructions */
 .instructions {
   background: #1a1a2e;
@@ -388,6 +191,107 @@ body {
 .instructions li {
   margin-bottom: 6px;
 }
+
+/* Game over overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.overlay.active {
+  display: flex;
+}
+
+.overlay h2 {
+  font-size: 28px;
+  color: #4CAF50;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.overlay.lose h2 {
+  color: #ff5555;
+}
+
+.overlay p {
+  font-size: 16px;
+  color: #aaa;
+  margin-bottom: 20px;
+  text-align: center;
+  max-width: 300px;
+}
+
+.overlay .final-stats {
+  background: #1a1a2e;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.overlay .final-stats h3 {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+.overlay .final-stats div {
+  font-size: 16px;
+  color: #e0e0e0;
+  margin: 4px 0;
+}
+
+/* Timer display */
+.timer-display {
+  text-align: center;
+  margin-top: 12px;
+  padding: 12px;
+  background: #1a1a2e;
+  border-radius: 8px;
+  border: 1px solid #2a2a4a;
+}
+
+.timer-label {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.timer-value {
+  font-size: 18px;
+  color: #ffa500;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 8px;
+    margin-top: 52px;
+  }
+  
+  .stats-panel {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-item {
+    min-width: auto;
+  }
+  
+  #gameCanvas {
+    height: 300px;
+  }
+}
 </style>
 </head>
 <body>
@@ -404,550 +308,472 @@ body {
   <div class="game-container">
     <h1 class="game-title">🐔 Куриная ферма бати</h1>
     <p class="game-description">
-      Собери 1000 кур и продай их на рынке!<br>
+      Кликай по курам, чтобы их собирать!<br>
       Каждые 5 минут приходит батя и забирает петуха.<br>
-      Не дай бате забравть всех петухов!
+      Собери 1000 кур, чтобы выиграть!
     </p>
     
-    <div class="chicken-counter">
-      <span class="chicken-icon">🐔</span>
-      <span class="chicken-count" id="chickenCount">0 / 1000</span>
-    </div>
-    
-    <canvas id="gameCanvas" width="800" height="500"></canvas>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
     
     <div class="stats-panel">
       <div class="stat-item">
         <div class="stat-label">Куры</div>
-        <div class="stat-value" id="totalChickens">0</div>
+        <div class="stat-value" id="chickenCount">0 / 1000</div>
       </div>
       <div class="stat-item">
         <div class="stat-label">Петухи</div>
-        <div class="stat-value" id="roosters">0</div>
+        <div class="stat-value" id="roosterCount">0</div>
       </div>
       <div class="stat-item">
         <div class="stat-label">Деньги</div>
-        <div class="stat-value" id="money">0 ₽</div>
+        <div class="stat-value" id="moneyCount">0 ₽</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-label">Цена за курицу</div>
-        <div class="stat-value" id="chickenPrice">10 ₽</div>
-      </div>
-    </div>
-    
-    <div class="controls">
-      <button class="btn btn-primary" onclick="collectChicken()">🥚 Собрать курицу (10 сек)</button>
-      <button class="btn btn-primary" onclick="collectRooster()">🐓 Собрать петуха (30 сек)</button>
-      <button class="btn" onclick="sellChickens()" id="sellBtn">💰 Продать кур</button>
-      <button class="btn" onclick="buyRoosterProtection()" id="protectBtn">🛡️ Защита от бати (50 ₽)</button>
     </div>
     
     <div class="timer-display">
       <div class="timer-label">До прихода бати:</div>
-      <div class="timer-value" id="battyTimer">5:00</div>
+      <div class="timer-value" id="batyaTimer">5:00</div>
     </div>
     
-    <div class="message-panel" id="messagePanel">
-      <div class="message">Добро пожаловать на куриную ферму! Начни собирать кур.</div>
-    </div>
-    
-    <div class="market-section">
-      <h3 class="market-title">🏪 Рынок</h3>
-      <div class="market-item">
-        <span class="market-name">Курица</span>
-        <span class="market-price" id="marketChickenPrice">10 ₽</span>
-        <button class="market-btn" onclick="sellChickens()">Продать</button>
-      </div>
-      <div class="market-item">
-        <span class="market-name">Петух</span>
-        <span class="market-price">25 ₽</span>
-        <button class="market-btn" onclick="sellRoosters()">Продать</button>
-      </div>
+    <div class="controls">
+      <button class="btn btn-primary" onclick="sellChickens()" id="sellBtn">💰 Продать кур (10 ₽/шт)</button>
+      <button class="btn" onclick="buyProtection()" id="protectBtn">🛡️ Защита (50 ₽)</button>
+      <button class="btn" onclick="buyRooster()" id="buyRoosterBtn">🐓 Купить петуха (100 ₽)</button>
     </div>
     
     <div class="instructions">
       <h3>❓ Как играть:</h3>
       <ul>
-        <li>Кликай "Собрать курицу" чтобы получить курицу (10 секунд)</li>
-        <li>Кликай "Собрать петуха" чтобы получить петуха (30 секунд)</li>
-        <li>Продавай кур и петухов на рынке за деньги</li>
-        <li>Каждые 5 минут батя забирает одного петуха</li>
-        <li>Купи защиту от бати за 50 ₽, чтобы спасти петухов</li>
-        <li>Собери 1000 кур, чтобы выиграть!</li>
+        <li><strong>Кликай по курам</strong> на поле, чтобы их собирать</li>
+        <li><strong>Петухи</strong> появляются автоматически, их можно купить</li>
+        <li><strong>Батя</strong> приходит каждые 5 минут и забирает петуха</li>
+        <li><strong>Продавай кур</strong> за деньги на рынке</li>
+        <li><strong>Купи защиту</strong> за 50 ₽, чтобы батя не брал петухов 5 минут</li>
+        <li><strong>Цель:</strong> Собрать 1000 кур!</li>
       </ul>
     </div>
   </div>
 </div>
 
-<div class="game-over" id="gameOver">
+<!-- Win overlay -->
+<div class="overlay" id="winOverlay">
   <h2>🎉 ПОБЕДА!</h2>
   <p>Ты собрал 1000 кур! Батя гордится тобой!</p>
+  <div class="final-stats">
+    <h3>Твои результаты:</h3>
+    <div>Куры: <strong id="finalChickens">1000</strong></div>
+    <div>Петухи: <strong id="finalRoosters">0</strong></div>
+    <div>Деньги: <strong id="finalMoney">0 ₽</strong></div>
+    <div>Время: <strong id="finalTime">0:00</strong></div>
+  </div>
   <button class="btn btn-primary" onclick="restartGame()">Играть снова</button>
 </div>
 
-<div class="game-over" id="gameLose">
-  <h2>😢 Батя забрал всех петухов!</h2>
-  <p>Ты не справился... Попробуй снова!</p>
+<!-- Lose overlay -->
+<div class="overlay lose" id="loseOverlay">
+  <h2>😢 ПОРАЖЕНИЕ!</h2>
+  <p>Батя забрал всех петухов! Попробуй снова!</p>
+  <div class="final-stats">
+    <h3>Твои результаты:</h3>
+    <div>Куры: <strong id="loseChickens">0</strong></div>
+    <div>Петухи: <strong id="loseRoosters">0</strong></div>
+    <div>Деньги: <strong id="loseMoney">0 ₽</strong></div>
+  </div>
   <button class="btn btn-primary" onclick="restartGame()">Играть снова</button>
 </div>
 
 <script>
 // Game state
-let game = {
+const game = {
   chickens: 0,
-  roosters: 0,
+  roosters: 3, // Start with 3 roosters
   money: 0,
   chickenPrice: 10,
-  roosterPrice: 25,
+  roosterPrice: 100,
   protectionActive: false,
   protectionTime: 0,
   batyaTimer: 300, // 5 minutes in seconds
   batyaInterval: null,
-  collectInterval: null,
-  lastCollectTime: 0,
+  gameTimer: 0,
+  gameStartTime: Date.now(),
   gameWon: false,
-  gameLost: false
+  gameLost: false,
+  chickensOnField: [],
+  roostersOnField: [],
+  batyaOnField: null
 };
-
-// DOM elements
-const chickenCountEl = document.getElementById('chickenCount');
-const totalChickensEl = document.getElementById('totalChickens');
-const roostersEl = document.getElementById('roosters');
-const moneyEl = document.getElementById('money');
-const chickenPriceEl = document.getElementById('chickenPrice');
-const marketChickenPriceEl = document.getElementById('marketChickenPrice');
-const batyaTimerEl = document.getElementById('battyTimer');
-const messagePanel = document.getElementById('messagePanel');
-const sellBtn = document.getElementById('sellBtn');
-const protectBtn = document.getElementById('protectBtn');
-const gameOverEl = document.getElementById('gameOver');
-const gameLoseEl = document.getElementById('gameLose');
 
 // Canvas setup
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-// Farm elements
-const farmElements = {
-  chickens: [],
-  roosters: [],
-  batya: null
-};
+// Set canvas size
+function resizeCanvas() {
+  const maxWidth = 600;
+  const ratio = 600 / 400;
+  canvas.width = Math.min(window.innerWidth - 40, maxWidth);
+  canvas.height = canvas.width / ratio;
+}
 
-// Initialize game
-function initGame() {
-  canvas.width = 800;
-  canvas.height = 500;
-  
-  // Start batya timer
-  startBattyTimer();
-  
-  // Start game loop
-  gameLoop();
-  
-  // Update UI
-  updateUI();
-  
-  // Add random chickens and roosters
-  for (let i = 0; i < 5; i++) {
-    addRandomChicken();
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+// Chicken class
+class Chicken {
+  constructor() {
+    this.x = Math.random() * (canvas.width - 80) + 40;
+    this.y = Math.random() * (canvas.height - 100) + 50;
+    this.size = 30 + Math.random() * 10;
+    this.type = Math.random() > 0.5 ? 'white' : 'brown';
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
+    this.age = 0;
+    this.maxAge = 10 + Math.random() * 20; // Chicken stays for 10-30 seconds
   }
-  for (let i = 0; i < 2; i++) {
-    addRandomRooster();
+  
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.age++;
+    
+    // Bounce off edges
+    if (this.x < 20 || this.x > canvas.width - 20) this.speedX *= -1;
+    if (this.y < 20 || this.y > canvas.height - 20) this.speedY *= -1;
+    
+    return this.age >= this.maxAge;
+  }
+  
+  draw() {
+    // Body
+    ctx.fillStyle = this.type === 'white' ? '#fff' : '#8B4513';
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y, this.size/2, this.size/1.8, 0, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Head
+    ctx.beginPath();
+    ctx.arc(this.x + this.size/3, this.y - this.size/3, this.size/4, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Beak
+    ctx.fillStyle = '#FFD700';
+    ctx.beginPath();
+    ctx.moveTo(this.x + this.size/2, this.y - this.size/3);
+    ctx.lineTo(this.x + this.size, this.y - this.size/4);
+    ctx.lineTo(this.x + this.size/1.5, this.y - this.size/2.5);
+    ctx.fill();
+    
+    // Eye
+    ctx.fillStyle = '#000';
+    ctx.beginPath();
+    ctx.arc(this.x + this.size/2.5, this.y - this.size/3.5, this.size/12, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Wing
+    ctx.fillStyle = this.type === 'white' ? '#ddd' : '#654321';
+    ctx.beginPath();
+    ctx.ellipse(this.x - this.size/4, this.y, this.size/3, this.size/5, Math.PI/4, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Legs
+    ctx.fillStyle = '#FFD700';
+    ctx.fillRect(this.x - this.size/8, this.y + this.size/3, this.size/12, this.size/4);
+    ctx.fillRect(this.x + this.size/8, this.y + this.size/3, this.size/12, this.size/4);
+  }
+  
+  isClicked(x, y) {
+    const dx = this.x - x;
+    const dy = this.y - y;
+    return Math.sqrt(dx * dx + dy * dy) < this.size/1.5;
   }
 }
 
-// Game loop
-function gameLoop() {
-  drawFarm();
-  requestAnimationFrame(gameLoop);
+// Rooster class
+class Rooster {
+  constructor() {
+    this.x = Math.random() * (canvas.width - 80) + 40;
+    this.y = Math.random() * (canvas.height - 100) + 50;
+    this.size = 40 + Math.random() * 10;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3;
+  }
+  
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    
+    // Bounce off edges
+    if (this.x < 25 || this.x > canvas.width - 25) this.speedX *= -1;
+    if (this.y < 25 || this.y > canvas.height - 25) this.speedY *= -1;
+  }
+  
+  draw() {
+    // Body
+    ctx.fillStyle = '#FF4500';
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y, this.size/2, this.size/1.6, 0, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Head
+    ctx.beginPath();
+    ctx.arc(this.x + this.size/2.5, this.y - this.size/2.5, this.size/3.5, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Comb
+    ctx.fillStyle = '#FF0000';
+    ctx.beginPath();
+    ctx.moveTo(this.x + this.size/3, this.y - this.size);
+    ctx.lineTo(this.x + this.size/2, this.y - this.size/1.5);
+    ctx.lineTo(this.x + this.size/1.5, this.y - this.size/1.2);
+    ctx.lineTo(this.x + this.size/1.2, this.y - this.size/1.5);
+    ctx.lineTo(this.x + this.size/2.5, this.y - this.size/1.8);
+    ctx.fill();
+    
+    // Beak
+    ctx.fillStyle = '#FFD700';
+    ctx.beginPath();
+    ctx.moveTo(this.x + this.size/1.8, this.y - this.size/2.5);
+    ctx.lineTo(this.x + this.size, this.y - this.size/3);
+    ctx.lineTo(this.x + this.size/1.4, this.y - this.size/2);
+    ctx.fill();
+    
+    // Eye
+    ctx.fillStyle = '#000';
+    ctx.beginPath();
+    ctx.arc(this.x + this.size/2, this.y - this.size/2.8, this.size/15, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Tail
+    ctx.fillStyle = '#FF8C00';
+    ctx.beginPath();
+    ctx.moveTo(this.x - this.size/2, this.y - this.size/4);
+    ctx.lineTo(this.x - this.size, this.y - this.size/2);
+    ctx.lineTo(this.x - this.size/1.5, this.y);
+    ctx.lineTo(this.x - this.size/2, this.y + this.size/4);
+    ctx.fill();
+    
+    // Wing
+    ctx.fillStyle = '#FF6347';
+    ctx.beginPath();
+    ctx.ellipse(this.x - this.size/3, this.y, this.size/2.5, this.size/4, Math.PI/4, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Legs
+    ctx.fillStyle = '#FFD700';
+    ctx.fillRect(this.x - this.size/10, this.y + this.size/3, this.size/15, this.size/3);
+    ctx.fillRect(this.x + this.size/10, this.y + this.size/3, this.size/15, this.size/3);
+  }
 }
 
-// Draw farm
+// Batya class
+class Batya {
+  constructor() {
+    this.x = canvas.width + 50;
+    this.y = canvas.height / 2;
+    this.size = 60;
+    this.speed = -2;
+    this.caughtRooster = false;
+  }
+  
+  update() {
+    this.x += this.speed;
+    
+    // Check if caught a rooster
+    if (!this.caughtRooster) {
+      for (let i = 0; i < game.roostersOnField.length; i++) {
+        const rooster = game.roostersOnField[i];
+        const dx = this.x - rooster.x;
+        const dy = this.y - rooster.y;
+        if (Math.sqrt(dx * dx + dy * dy) < this.size/2 + rooster.size/2) {
+          game.roostersOnField.splice(i, 1);
+          game.roosters--;
+          this.caughtRooster = true;
+          addMessage('😱 Батя забрал петуха!', 'error');
+          break;
+        }
+      }
+    }
+    
+    return this.x < -50;
+  }
+  
+  draw() {
+    // Body
+    ctx.fillStyle = '#8B4513';
+    ctx.fillRect(this.x - this.size/4, this.y - this.size/2, this.size/2, this.size);
+    
+    // Head
+    ctx.beginPath();
+    ctx.arc(this.x + this.size/8, this.y - this.size/2, this.size/5, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Hat
+    ctx.fillStyle = '#000';
+    ctx.fillRect(this.x - this.size/8, this.y - this.size/2 - this.size/10, this.size/2 + this.size/4, this.size/8);
+    ctx.fillRect(this.x - this.size/6, this.y - this.size/2 - this.size/20, this.size/2 + this.size/3, this.size/20);
+    
+    // Beard
+    ctx.fillStyle = '#fff';
+    ctx.beginPath();
+    ctx.ellipse(this.x + this.size/8, this.y - this.size/4, this.size/4, this.size/6, 0, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Arms
+    ctx.fillStyle = '#8B4513';
+    ctx.fillRect(this.x - this.size/2, this.y - this.size/4, this.size/3, this.size/10);
+    ctx.fillRect(this.x + this.size/4, this.y - this.size/4, this.size/3, this.size/10);
+    
+    // Bag
+    ctx.fillStyle = '#000';
+    ctx.fillRect(this.x + this.size/4, this.y + this.size/4, this.size/4, this.size/4);
+    
+    // If caught rooster, show it in bag
+    if (this.caughtRooster) {
+      ctx.fillStyle = '#FF4500';
+      ctx.beginPath();
+      ctx.arc(this.x + this.size/4 + this.size/8, this.y + this.size/4 + this.size/8, this.size/10, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+}
+
+// Farm background elements
 function drawFarm() {
-  // Clear canvas
-  ctx.fillStyle = '#1a1a2e';
+  // Sky gradient
+  const skyGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  skyGradient.addColorStop(0, '#1a2a3e');
+  skyGradient.addColorStop(1, '#2a1a2e');
+  ctx.fillStyle = skyGradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
-  // Draw ground
+  // Ground
   ctx.fillStyle = '#2a2a1a';
-  ctx.fillRect(0, 350, canvas.width, 150);
+  ctx.fillRect(0, canvas.height - 60, canvas.width, 60);
   
-  // Draw fence
+  // Fence
   ctx.strokeStyle = '#4a4a4a';
   ctx.lineWidth = 2;
-  ctx.strokeRect(50, 300, 700, 200);
+  ctx.strokeRect(20, canvas.height - 100, canvas.width - 40, 40);
   
-  // Draw chickens
-  farmElements.chickens.forEach(chicken => {
-    drawChicken(chicken.x, chicken.y, chicken.type);
-  });
-  
-  // Draw roosters
-  farmElements.roosters.forEach(rooster => {
-    drawRooster(rooster.x, rooster.y);
-  });
-  
-  // Draw batya if present
-  if (farmElements.batya) {
-    drawBatya(farmElements.batya.x, farmElements.batya.y);
+  // Draw vertical fence lines
+  for (let x = 40; x < canvas.width - 20; x += 20) {
+    ctx.beginPath();
+    ctx.moveTo(x, canvas.height - 100);
+    ctx.lineTo(x, canvas.height - 60);
+    ctx.stroke();
   }
   
-  // Draw farm house
-  drawFarmHouse(700, 320);
-  
-  // Draw market
-  drawMarket(50, 320);
-}
-
-// Draw chicken
-function drawChicken(x, y, type) {
-  // Body
-  ctx.fillStyle = type === 'white' ? '#fff' : type === 'brown' ? '#8B4513' : '#000';
-  ctx.beginPath();
-  ctx.ellipse(x, y, 20, 25, 0, 0, Math.PI * 2);
-  ctx.fill();
-  
-  // Head
-  ctx.beginPath();
-  ctx.arc(x + 15, y - 15, 10, 0, Math.PI * 2);
-  ctx.fill();
-  
-  // Beak
-  ctx.fillStyle = '#FFD700';
-  ctx.beginPath();
-  ctx.moveTo(x + 22, y - 15);
-  ctx.lineTo(x + 28, y - 12);
-  ctx.lineTo(x + 25, y - 18);
-  ctx.fill();
-  
-  // Eye
-  ctx.fillStyle = '#000';
-  ctx.beginPath();
-  ctx.arc(x + 18, y - 18, 2, 0, Math.PI * 2);
-  ctx.fill();
-  
-  // Wings
-  ctx.fillStyle = type === 'white' ? '#ddd' : type === 'brown' ? '#654321' : '#333';
-  ctx.beginPath();
-  ctx.ellipse(x - 10, y, 15, 10, Math.PI / 4, 0, Math.PI * 2);
-  ctx.fill();
-  
-  // Legs
-  ctx.fillStyle = '#FFD700';
-  ctx.fillRect(x - 5, y + 25, 3, 10);
-  ctx.fillRect(x + 5, y + 25, 3, 10);
-}
-
-// Draw rooster
-function drawRooster(x, y) {
-  // Body
-  ctx.fillStyle = '#FF4500';
-  ctx.beginPath();
-  ctx.ellipse(x, y, 25, 30, 0, 0, Math.PI * 2);
-  ctx.fill();
-  
-  // Head
-  ctx.beginPath();
-  ctx.arc(x + 20, y - 20, 12, 0, Math.PI * 2);
-  ctx.fill();
-  
-  // Comb
-  ctx.fillStyle = '#FF0000';
-  ctx.beginPath();
-  ctx.moveTo(x + 15, y - 30);
-  ctx.lineTo(x + 20, y - 40);
-  ctx.lineTo(x + 25, y - 30);
-  ctx.lineTo(x + 30, y - 35);
-  ctx.lineTo(x + 35, y - 30);
-  ctx.lineTo(x + 25, y - 25);
-  ctx.fill();
-  
-  // Beak
-  ctx.fillStyle = '#FFD700';
-  ctx.beginPath();
-  ctx.moveTo(x + 28, y - 20);
-  ctx.lineTo(x + 35, y - 15);
-  ctx.lineTo(x + 30, y - 22);
-  ctx.fill();
-  
-  // Eye
-  ctx.fillStyle = '#000';
-  ctx.beginPath();
-  ctx.arc(x + 23, y - 22, 2, 0, Math.PI * 2);
-  ctx.fill();
-  
-  // Tail
-  ctx.fillStyle = '#FF8C00';
-  ctx.beginPath();
-  ctx.moveTo(x - 25, y - 10);
-  ctx.lineTo(x - 40, y - 30);
-  ctx.lineTo(x - 35, y);
-  ctx.lineTo(x - 25, y + 10);
-  ctx.fill();
-  
-  // Wings
-  ctx.fillStyle = '#FF6347';
-  ctx.beginPath();
-  ctx.ellipse(x - 15, y, 20, 12, Math.PI / 4, 0, Math.PI * 2);
-  ctx.fill();
-  
-  // Legs
-  ctx.fillStyle = '#FFD700';
-  ctx.fillRect(x - 8, y + 30, 4, 12);
-  ctx.fillRect(x + 8, y + 30, 4, 12);
-}
-
-// Draw batya
-function drawBatya(x, y) {
-  // Body
+  // Farm house
   ctx.fillStyle = '#8B4513';
-  ctx.fillRect(x - 15, y - 30, 30, 40);
-  
-  // Head
-  ctx.beginPath();
-  ctx.arc(x, y - 40, 10, 0, Math.PI * 2);
-  ctx.fill();
-  
-  // Hat
-  ctx.fillStyle = '#000';
-  ctx.fillRect(x - 12, y - 50, 24, 12);
-  ctx.fillRect(x - 15, y - 45, 30, 5);
-  
-  // Beard
-  ctx.fillStyle = '#fff';
-  ctx.beginPath();
-  ctx.ellipse(x, y - 30, 15, 10, 0, 0, Math.PI * 2);
-  ctx.fill();
-  
-  // Arms
-  ctx.fillStyle = '#8B4513';
-  ctx.fillRect(x - 25, y - 20, 15, 5);
-  ctx.fillRect(x + 10, y - 20, 15, 5);
-  
-  // Bag
-  ctx.fillStyle = '#000';
-  ctx.fillRect(x + 20, y - 10, 15, 15);
-}
-
-// Draw farm house
-function drawFarmHouse(x, y) {
-  // House
-  ctx.fillStyle = '#8B4513';
-  ctx.fillRect(x - 40, y - 40, 80, 50);
+  ctx.fillRect(canvas.width - 120, canvas.height - 100, 100, 50);
   
   // Roof
   ctx.fillStyle = '#FF4500';
   ctx.beginPath();
-  ctx.moveTo(x - 50, y - 40);
-  ctx.lineTo(x, y - 60);
-  ctx.lineTo(x + 50, y - 40);
+  ctx.moveTo(canvas.width - 130, canvas.height - 100);
+  ctx.lineTo(canvas.width - 70, canvas.height - 120);
+  ctx.lineTo(canvas.width - 10, canvas.height - 100);
   ctx.fill();
   
   // Door
   ctx.fillStyle = '#000';
-  ctx.fillRect(x - 10, y - 20, 20, 30);
+  ctx.fillRect(canvas.width - 90, canvas.height - 70, 20, 30);
   
   // Window
   ctx.fillStyle = '#4169E1';
-  ctx.fillRect(x + 20, y - 30, 15, 15);
+  ctx.fillRect(canvas.width - 60, canvas.height - 80, 15, 15);
 }
 
-// Draw market
-function drawMarket(x, y) {
-  // Stall
-  ctx.fillStyle = '#8B4513';
-  ctx.fillRect(x, y - 30, 60, 40);
-  
-  // Roof
-  ctx.fillStyle = '#FF4500';
-  ctx.beginPath();
-  ctx.moveTo(x - 10, y - 30);
-  ctx.lineTo(x + 30, y - 45);
-  ctx.lineTo(x + 70, y - 30);
-  ctx.fill();
-  
-  // Sign
-  ctx.fillStyle = '#fff';
-  ctx.fillRect(x + 20, y - 50, 20, 10);
-  ctx.fillStyle = '#000';
-  ctx.font = '8px Arial';
-  ctx.fillText('РЫНОК', x + 22, y - 45);
+// Spawn a new chicken
+function spawnChicken() {
+  if (game.chickensOnField.length < 10) { // Max 10 chickens on field
+    game.chickensOnField.push(new Chicken());
+  }
 }
 
-// Add random chicken
-function addRandomChicken() {
-  const types = ['white', 'brown', 'black'];
-  const type = types[Math.floor(Math.random() * types.length)];
-  farmElements.chickens.push({
-    x: Math.random() * (canvas.width - 100) + 50,
-    y: Math.random() * 100 + 370,
-    type: type
-  });
+// Spawn a new rooster
+function spawnRooster() {
+  if (game.roostersOnField.length < game.roosters) {
+    game.roostersOnField.push(new Rooster());
+  }
 }
 
-// Add random rooster
-function addRandomRooster() {
-  farmElements.roosters.push({
-    x: Math.random() * (canvas.width - 100) + 50,
-    y: Math.random() * 100 + 370
-  });
+// Add message to log
+function addMessage(text, type = '') {
+  // In this simplified version, we'll just use console
+  console.log(text);
 }
 
-// Collect chicken
-function collectChicken() {
+// Update game state
+function update() {
   if (game.gameWon || game.gameLost) return;
   
-  const now = Date.now();
-  if (now - game.lastCollectTime < 10000) {
-    addMessage('Подожди 10 секунд перед следующим сбором!', 'warning');
-    return;
+  // Spawn chickens randomly
+  if (Math.random() < 0.02) { // 2% chance per frame
+    spawnChicken();
   }
   
-  game.chickens++;
-  game.lastCollectTime = now;
-  addRandomChicken();
-  addMessage('🐔 +1 курица!', 'success');
-  updateUI();
-  checkWinCondition();
-}
-
-// Collect rooster
-function collectRooster() {
-  if (game.gameWon || game.gameLost) return;
-  
-  const now = Date.now();
-  if (now - game.lastCollectTime < 30000) {
-    addMessage('Подожди 30 секунд перед следующим сбором петуха!', 'warning');
-    return;
-  }
-  
-  game.roosters++;
-  game.lastCollectTime = now;
-  addRandomRooster();
-  addMessage('🐓 +1 петух!', 'success');
-  updateUI();
-}
-
-// Sell chickens
-function sellChickens() {
-  if (game.gameWon || game.gameLost) return;
-  
-  if (game.chickens === 0) {
-    addMessage('Нет кур для продажи!', 'error');
-    return;
-  }
-  
-  const earnings = game.chickens * game.chickenPrice;
-  game.money += earnings;
-  game.chickens = 0;
-  farmElements.chickens = [];
-  
-  addMessage(`💰 Продал ${earnings} ₽ за кур!`, 'success');
-  updateUI();
-}
-
-// Sell roosters
-function sellRoosters() {
-  if (game.gameWon || game.gameLost) return;
-  
-  if (game.roosters === 0) {
-    addMessage('Нет петухов для продажи!', 'error');
-    return;
-  }
-  
-  const earnings = game.roosters * game.roosterPrice;
-  game.money += earnings;
-  game.roosters = 0;
-  farmElements.roosters = [];
-  
-  addMessage(`💰 Продал ${earnings} ₽ за петухов!`, 'success');
-  updateUI();
-}
-
-// Buy rooster protection
-function buyRoosterProtection() {
-  if (game.gameWon || game.gameLost) return;
-  
-  if (game.money < 50) {
-    addMessage('Не хватает денег! Нужно 50 ₽', 'error');
-    return;
-  }
-  
-  game.money -= 50;
-  game.protectionActive = true;
-  game.protectionTime = 300; // 5 minutes
-  
-  addMessage('🛡️ Защита от бати активирована на 5 минут!', 'success');
-  updateUI();
-}
-
-// Batya timer
-function startBattyTimer() {
-  clearInterval(game.batyaInterval);
-  game.batyaInterval = setInterval(() => {
-    if (game.gameWon || game.gameLost) {
-      clearInterval(game.batyaInterval);
-      return;
+  // Update chickens
+  for (let i = game.chickensOnField.length - 1; i >= 0; i--) {
+    if (game.chickensOnField[i].update()) {
+      game.chickensOnField.splice(i, 1);
     }
-    
-    game.battyTimer--;
-    
-    if (game.battyTimer <= 0) {
-      batyaArrives();
-      game.battyTimer = 300;
+  }
+  
+  // Update roosters
+  for (let i = 0; i < game.roostersOnField.length; i++) {
+    game.roostersOnField[i].update();
+  }
+  
+  // Update batya
+  if (game.batyaOnField) {
+    if (game.batyaOnField.update()) {
+      game.batyaOnField = null;
     }
-    
-    // Update protection time
-    if (game.protectionActive) {
-      game.protectionTime--;
-      if (game.protectionTime <= 0) {
-        game.protectionActive = false;
-        addMessage('⚠️ Защита от бати закончилась!', 'warning');
-      }
+  }
+  
+  // Update timer
+  game.battyTimer--;
+  if (game.battyTimer <= 0) {
+    batyaArrives();
+    game.battyTimer = 300; // Reset to 5 minutes
+  }
+  
+  // Update protection time
+  if (game.protectionActive) {
+    game.protectionTime--;
+    if (game.protectionTime <= 0) {
+      game.protectionActive = false;
+      addMessage('⚠️ Защита от бати закончилась!');
     }
-    
-    updateUI();
-  }, 1000);
+  }
+  
+  // Check win/lose conditions
+  if (game.chickens >= 1000) {
+    gameWon();
+  }
+  
+  if (game.roosters <= 0 && game.chickens < 1000) {
+    gameLost();
+  }
+  
+  // Spawn roosters if we have more than on field
+  while (game.roostersOnField.length < Math.min(game.roosters, 5)) {
+    spawnRooster();
+  }
+  
+  updateUI();
 }
 
 // Batya arrives
 function batyaArrives() {
   if (game.protectionActive) {
-    addMessage('🛡️ Батя пришёл, но защита сработала! Петухи в безопасности.', 'success');
+    addMessage('🛡️ Батя пришёл, но защита сработала!');
     return;
   }
   
   if (game.roosters > 0) {
-    game.roosters--;
-    farmElements.roosters.pop();
-    addMessage('😱 Батя забрал одного петуха!', 'error');
-    
-    if (game.roosters === 0 && game.chickens < 1000) {
-      gameLost();
-    }
-  } else {
-    addMessage('Батя пришёл, но петухов нет!', 'warning');
-  }
-  
-  // Show batya on farm
-  farmElements.batya = {
-    x: canvas.width / 2,
-    y: canvas.height / 2
-  };
-  
-  // Remove batya after 3 seconds
-  setTimeout(() => {
-    farmElements.batya = null;
-  }, 3000);
-  
-  updateUI();
-}
-
-// Check win condition
-function checkWinCondition() {
-  if (game.chickens >= 1000) {
-    gameWon();
+    game.batyaOnField = new Batya();
   }
 }
 
@@ -955,184 +781,259 @@ function checkWinCondition() {
 function gameWon() {
   game.gameWon = true;
   clearInterval(game.batyaInterval);
-  gameOverEl.classList.add('active');
-  addMessage('🎉 ПОБЕДА! Ты собрал 1000 кур!', 'success');
+  
+  // Set final stats
+  document.getElementById('finalChickens').textContent = game.chickens;
+  document.getElementById('finalRoosters').textContent = game.roosters;
+  document.getElementById('finalMoney').textContent = game.money + ' ₽';
+  
+  // Calculate time
+  const time = Math.floor((Date.now() - game.gameStartTime) / 1000);
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+  document.getElementById('finalTime').textContent = minutes + ':' + seconds.toString().padStart(2, '0');
+  
+  document.getElementById('winOverlay').classList.add('active');
 }
 
 // Game lost
 function gameLost() {
   game.gameLost = true;
   clearInterval(game.batyaInterval);
-  gameLoseEl.classList.add('active');
-  addMessage('😢 Батя забрал всех петухов! Игра окончена.', 'error');
+  
+  // Set final stats
+  document.getElementById('loseChickens').textContent = game.chickens;
+  document.getElementById('loseRoosters').textContent = game.roosters;
+  document.getElementById('loseMoney').textContent = game.money + ' ₽';
+  
+  document.getElementById('loseOverlay').classList.add('active');
 }
 
 // Restart game
 function restartGame() {
-  game = {
-    chickens: 0,
-    roosters: 0,
-    money: 0,
-    chickenPrice: 10,
-    roosterPrice: 25,
-    protectionActive: false,
-    protectionTime: 0,
-    batyaTimer: 300,
-    batyaInterval: null,
-    collectInterval: null,
-    lastCollectTime: 0,
-    gameWon: false,
-    gameLost: false
-  };
+  game.chickens = 0;
+  game.roosters = 3;
+  game.money = 0;
+  game.protectionActive = false;
+  game.protectionTime = 0;
+  game.battyTimer = 300;
+  game.gameWon = false;
+  game.gameLost = false;
+  game.chickensOnField = [];
+  game.roostersOnField = [];
+  game.batyaOnField = null;
+  game.gameStartTime = Date.now();
   
-  farmElements.chickens = [];
-  farmElements.roosters = [];
-  farmElements.batya = null;
+  document.getElementById('winOverlay').classList.remove('active');
+  document.getElementById('loseOverlay').classList.remove('active');
   
-  gameOverEl.classList.remove('active');
-  gameLoseEl.classList.remove('active');
-  
-  // Add initial chickens and roosters
-  for (let i = 0; i < 5; i++) {
-    addRandomChicken();
-  }
-  for (let i = 0; i < 2; i++) {
-    addRandomRooster();
-  }
-  
-  startBattyTimer();
   updateUI();
-  addMessage('Игра начата заново!', 'success');
+  
+  // Spawn initial roosters
+  for (let i = 0; i < game.roosters; i++) {
+    spawnRooster();
+  }
 }
 
-// Add message
-function addMessage(text, type = '') {
-  const messageEl = document.createElement('div');
-  messageEl.className = `message ${type}`;
-  messageEl.textContent = text;
-  messagePanel.insertBefore(messageEl, messagePanel.firstChild);
+// Sell chickens
+function sellChickens() {
+  if (game.gameWon || game.gameLost) return;
   
-  // Remove old messages
-  if (messagePanel.children.length > 5) {
-    messagePanel.removeChild(messagePanel.lastChild);
+  if (game.chickens === 0) {
+    alert('Нет кур для продажи!');
+    return;
   }
+  
+  game.money += game.chickens * game.chickenPrice;
+  game.chickens = 0;
+  game.chickensOnField = [];
+  updateUI();
+  addMessage(`💰 Продал ${game.chickens * game.chickenPrice} ₽ за кур!`);
+}
+
+// Buy protection
+function buyProtection() {
+  if (game.gameWon || game.gameLost) return;
+  
+  if (game.money < 50) {
+    alert('Не хватает денег! Нужно 50 ₽');
+    return;
+  }
+  
+  game.money -= 50;
+  game.protectionActive = true;
+  game.protectionTime = 300; // 5 minutes
+  updateUI();
+  addMessage('🛡️ Защита от бати активирована!');
+}
+
+// Buy rooster
+function buyRooster() {
+  if (game.gameWon || game.gameLost) return;
+  
+  if (game.money < 100) {
+    alert('Не хватает денег! Нужно 100 ₽');
+    return;
+  }
+  
+  game.money -= 100;
+  game.roosters++;
+  spawnRooster();
+  updateUI();
+  addMessage('🐓 Купил петуха!');
 }
 
 // Update UI
 function updateUI() {
-  chickenCountEl.textContent = `${game.chickens} / 1000`;
-  totalChickensEl.textContent = game.chickens;
-  roostersEl.textContent = game.roosters;
-  moneyEl.textContent = `${game.money} ₽`;
-  chickenPriceEl.textContent = `${game.chickenPrice} ₽`;
-  marketChickenPriceEl.textContent = `${game.chickenPrice} ₽`;
+  document.getElementById('chickenCount').textContent = game.chickens + ' / 1000';
+  document.getElementById('roosterCount').textContent = game.roosters;
+  document.getElementById('moneyCount').textContent = game.money + ' ₽';
   
-  // Update timer display
+  // Update timer
   const minutes = Math.floor(game.battyTimer / 60);
   const seconds = game.battyTimer % 60;
-  batyaTimerEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  document.getElementById('batyaTimer').textContent = minutes + ':' + seconds.toString().padStart(2, '0');
   
-  // Disable buttons if needed
-  sellBtn.disabled = game.chickens === 0;
-  protectBtn.disabled = game.money < 50;
+  // Update button states
+  document.getElementById('sellBtn').disabled = game.chickens === 0;
+  document.getElementById('protectBtn').disabled = game.money < 50;
+  document.getElementById('buyRoosterBtn').disabled = game.money < 100;
   
-  // Update protection status
+  // Update protection button text
   if (game.protectionActive) {
-    protectBtn.textContent = `🛡️ Защита активна (${Math.floor(game.protectionTime / 60)}:${(game.protectionTime % 60).toString().padStart(2, '0')})`;
+    const protMinutes = Math.floor(game.protectionTime / 60);
+    const protSeconds = game.protectionTime % 60;
+    document.getElementById('protectBtn').textContent = `🛡️ Защита (${protMinutes}:${protSeconds.toString().padStart(2, '0')})`;
   } else {
-    protectBtn.textContent = '🛡️ Защита от бати (50 ₽)';
+    document.getElementById('protectBtn').textContent = '🛡️ Защита (50 ₽)';
   }
 }
 
-// Initialize game on load
+// Handle canvas click
+canvas.addEventListener('click', (e) => {
+  if (game.gameWon || game.gameLost) return;
+  
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  
+  // Check if clicked on a chicken
+  for (let i = 0; i < game.chickensOnField.length; i++) {
+    if (game.chickensOnField[i].isClicked(x, y)) {
+      game.chickensOnField.splice(i, 1);
+      game.chickens++;
+      addMessage('🐔 +1 курица!');
+      updateUI();
+      return;
+    }
+  }
+  
+  // Check if clicked on a rooster (just for fun, doesn't collect)
+  for (let i = 0; i < game.roostersOnField.length; i++) {
+    const rooster = game.roostersOnField[i];
+    const dx = x - rooster.x;
+    const dy = y - rooster.y;
+    if (Math.sqrt(dx * dx + dy * dy) < rooster.size/1.5) {
+      addMessage('🐓 Петух кукарекает!');
+      return;
+    }
+  }
+});
+
+// Game loop
+function gameLoop() {
+  // Clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // Draw farm background
+  drawFarm();
+  
+  // Draw chickens
+  for (const chicken of game.chickensOnField) {
+    chicken.draw();
+  }
+  
+  // Draw roosters
+  for (const rooster of game.roostersOnField) {
+    rooster.draw();
+  }
+  
+  // Draw batya
+  if (game.batyaOnField) {
+    game.batyaOnField.draw();
+  }
+  
+  // Update game state
+  update();
+  
+  requestAnimationFrame(gameLoop);
+}
+
+// Start batya timer
+function startBattyTimer() {
+  clearInterval(game.batyaInterval);
+  game.batyaInterval = setInterval(() => {
+    if (!game.gameWon && !game.gameLost) {
+      game.battyTimer--;
+      const minutes = Math.floor(game.battyTimer / 60);
+      const seconds = game.battyTimer % 60;
+      document.getElementById('batyaTimer').textContent = minutes + ':' + seconds.toString().padStart(2, '0');
+      
+      if (game.battyTimer <= 0) {
+        batyaArrives();
+        game.battyTimer = 300;
+      }
+      
+      if (game.protectionActive) {
+        game.protectionTime--;
+        if (game.protectionTime <= 0) {
+          game.protectionActive = false;
+        }
+      }
+    }
+  }, 1000);
+}
+
+// Initialize game
+function initGame() {
+  resizeCanvas();
+  startBattyTimer();
+  
+  // Spawn initial roosters
+  for (let i = 0; i < game.roosters; i++) {
+    spawnRooster();
+  }
+  
+  // Start game loop
+  gameLoop();
+  
+  // Update UI
+  updateUI();
+  
+  // Add first chicken
+  spawnChicken();
+}
+
+// Start game when loaded
 window.onload = initGame;
 
 // Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
   if (e.code === 'Space' || e.key === ' ') {
     e.preventDefault();
-    collectChicken();
-  }
-  if (e.code === 'KeyR' || e.key === 'r' || e.key === 'к') {
-    e.preventDefault();
-    collectRooster();
-  }
-  if (e.code === 'KeyS' || e.key === 's' || e.key === 'ы') {
-    e.preventDefault();
-    sellChickens();
-  }
-});
-
-// Canvas click handler
-canvas.addEventListener('click', (e) => {
-  const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  
-  // Check if clicked on a chicken
-  for (let i = 0; i < farmElements.chickens.length; i++) {
-    const chicken = farmElements.chickens[i];
-    const distance = Math.sqrt(Math.pow(x - chicken.x, 2) + Math.pow(y - chicken.y, 2));
-    if (distance < 30) {
-      collectChicken();
-      return;
-    }
-  }
-  
-  // Check if clicked on a rooster
-  for (let i = 0; i < farmElements.roosters.length; i++) {
-    const rooster = farmElements.roosters[i];
-    const distance = Math.sqrt(Math.pow(x - rooster.x, 2) + Math.pow(y - rooster.y, 2));
-    if (distance < 35) {
-      collectRooster();
-      return;
+    // Simulate click on center of canvas
+    const x = canvas.width / 2;
+    const y = canvas.height / 2;
+    for (let i = 0; i < game.chickensOnField.length; i++) {
+      if (game.chickensOnField[i].isClicked(x, y)) {
+        game.chickensOnField.splice(i, 1);
+        game.chickens++;
+        updateUI();
+        break;
+      }
     }
   }
 });
-
-// Auto-save game state
-function saveGame() {
-  localStorage.setItem('chickenFarmSave', JSON.stringify({
-    chickens: game.chickens,
-    roosters: game.roosters,
-    money: game.money,
-    chickenPrice: game.chickenPrice,
-    batyaTimer: game.battyTimer,
-    protectionActive: game.protectionActive,
-    protectionTime: game.protectionTime
-  }));
-}
-
-// Load game state
-function loadGame() {
-  const save = localStorage.getItem('chickenFarmSave');
-  if (save) {
-    const savedGame = JSON.parse(save);
-    game.chickens = savedGame.chickens || 0;
-    game.roosters = savedGame.roosters || 0;
-    game.money = savedGame.money || 0;
-    game.chickenPrice = savedGame.chickenPrice || 10;
-    game.battyTimer = savedGame.battyTimer || 300;
-    game.protectionActive = savedGame.protectionActive || false;
-    game.protectionTime = savedGame.protectionTime || 0;
-    
-    // Add chickens and roosters to farm
-    for (let i = 0; i < game.chickens; i++) {
-      addRandomChicken();
-    }
-    for (let i = 0; i < game.roosters; i++) {
-      addRandomRooster();
-    }
-    
-    addMessage('Игра загружена из сохранения!', 'success');
-  }
-}
-
-// Auto-save every 30 seconds
-setInterval(saveGame, 30000);
-
-// Load game on start
-loadGame();
 </script>
 
 </body>
